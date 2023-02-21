@@ -62,7 +62,11 @@ jobs:
         with:
           name: web
           path: build/web
-      - name: Deploy
+      - name: Install rsync 📚
+        if: github.ref == 'refs/heads/main'
+        run: |
+          apt-get update && apt-get install -y rsync
+      - name: Deploy to GitHub Pages 🚀
         if: github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
