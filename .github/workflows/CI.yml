@@ -31,6 +31,7 @@ jobs:
           mkdir -v -p build/windows
           godot -v --export "Windows Desktop" ./build/windows/${EXPORT_NAME}.exe
       - name: Upload Artifact
+        if: github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v1
         with:
           name: windows
@@ -56,11 +57,13 @@ jobs:
           mkdir -v -p build/web
           godot -v --export "HTML5" ./build/web/index.html
       - name: Upload Artifact
+        if: github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v1
         with:
           name: web
           path: build/web
       - name: Deploy
+        if: github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
           branch: gh-pages
