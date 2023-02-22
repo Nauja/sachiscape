@@ -9,31 +9,60 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Entity",
+"language": "GDScript",
+"path": "res://src/entity/entity.gd"
+}, {
+"base": "Node2D",
+"class": "Level",
+"language": "GDScript",
+"path": "res://src/level/level.gd"
+}, {
 "base": "CanvasLayer",
 "class": "Menu",
 "language": "GDScript",
 "path": "res://src/menu/menu.gd"
+}, {
+"base": "Entity",
+"class": "Player",
+"language": "GDScript",
+"path": "res://src/entity/player/player.gd"
 } ]
 _global_script_class_icons={
-"Menu": ""
+"Entity": "",
+"Level": "",
+"Menu": "",
+"Player": ""
 }
 
 [application]
 
 config/name="Sachiscape"
-run/main_scene="res://src/menu/home/home.tscn"
+run/main_scene="res://src/root.tscn"
 config/icon="res://icon.png"
 
 [display]
 
-window/size/width=550
-window/size/height=550
+window/size/width=225
+window/size/height=225
+window/size/test_width=550
+window/size/test_height=550
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+
+[input]
+
+jump={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [physics]
 
