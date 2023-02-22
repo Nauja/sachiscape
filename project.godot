@@ -8,10 +8,28 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "CanvasLayer",
+"class": "Menu",
+"language": "GDScript",
+"path": "res://src/menu/menu.gd"
+} ]
+_global_script_class_icons={
+"Menu": ""
+}
+
 [application]
 
 config/name="Sachiscape"
+run/main_scene="res://src/menu/home/home.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=550
+window/size/height=550
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [gui]
 
