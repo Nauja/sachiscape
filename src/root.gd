@@ -15,6 +15,7 @@ onready var _root = get_node(root_node)
 var _current_scene
 
 func _ready():
+	LevelSignals.connect("reset_pressed", self, "_on_reset_pressed")
 	# Display the home menu when ready
 	_current_scene = _load_home_scene()
 	_root.queue_free()
@@ -41,5 +42,9 @@ func _remove_current_scene():
 
 # Called from home menu when the play button is clicked
 func _on_play():
+	_remove_current_scene()
+	_current_scene = _load_level_scene()
+	
+func _on_reset_pressed(player: Player):
 	_remove_current_scene()
 	_current_scene = _load_level_scene()

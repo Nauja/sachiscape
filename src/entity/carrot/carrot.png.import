@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/player.png-1a01ff6e2a54bf6a414a68fc97d54a0c.stex"
+path="res://.import/carrot.png-0ed992aa68347337f67985d336956b0a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/entity/player/player.png"
-dest_files=[ "res://.import/player.png-1a01ff6e2a54bf6a414a68fc97d54a0c.stex" ]
+source_file="res://src/entity/carrot/carrot.png"
+dest_files=[ "res://.import/carrot.png-0ed992aa68347337f67985d336956b0a.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
