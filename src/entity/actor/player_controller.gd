@@ -48,3 +48,5 @@ func _process(delta):
 	
 	if input_device.is_action_just_released("reset"):
 		LevelSignals.notify_reset_pressed(actor)
+	elif input_device.is_action_just_released("ui_cancel"):
+		LevelSignals.notify_back_to_main_menu_pressed(actor)

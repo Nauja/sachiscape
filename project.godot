@@ -115,6 +115,7 @@ GameSheet="*res://src/autoload/game_sheet.gd"
 LevelSheet="*res://src/autoload/level_sheet.gd"
 FontGenerator="*res://src/autoload/font_generator.gd"
 GameSignals="*res://src/autoload/game_signals.gd"
+SaveManager="*res://src/autoload/save_manager.gd"
 
 [display]
 

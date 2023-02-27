@@ -1,8 +1,91 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/menu/level_card/level_card.gd" type="Script" id=1]
 [ext_resource path="res://src/menu/menu.png" type="Texture" id=2]
 [ext_resource path="res://src/font/morobox8.tres" type="BitmapFont" id=3]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("NinePatchRect:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 16, 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NinePatchRect/Label:custom_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.196078, 0.196078, 0.196078, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "locked"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("NinePatchRect:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 16, 0, 16, 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NinePatchRect/Label:custom_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.196078, 0.196078, 0.196078, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "unlocked"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("NinePatchRect:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 16, 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NinePatchRect/Label:custom_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="LevelCard" type="HBoxContainer"]
 margin_right = 24.0
@@ -38,7 +121,14 @@ custom_fonts/font = ExtResource( 3 )
 unique_name_in_owner = true
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.196078, 0.196078, 0.196078, 1 )
 custom_fonts/font = ExtResource( 3 )
 text = "1"
 align = 1
 valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+anims/RESET = SubResource( 1 )
+anims/locked = SubResource( 3 )
+anims/unlocked = SubResource( 2 )

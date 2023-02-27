@@ -15,6 +15,9 @@ signal goal_reached(player, goal)
 # Player pressed the reset button
 signal reset_pressed(player)
 
+# Player pressed the back to main menu button
+signal back_to_main_menu_pressed(player)
+
 # Request to load the next level
 signal load_next_level()
 
@@ -32,6 +35,9 @@ func notify_goal_reached(player, goal):
 	
 func notify_reset_pressed(player):
 	emit_signal("reset_pressed", player)
+	
+func notify_back_to_main_menu_pressed(player):
+	emit_signal("back_to_main_menu_pressed", player)	
 	
 func notify_load_next_level():
 	emit_signal("load_next_level")
