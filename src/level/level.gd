@@ -16,6 +16,7 @@ func _on_energy_changed(player: Player, old_value: int, new_value: int):
 
 func _on_goal_reached(player: Player, goal: Goal):
 	print("player ", player, " reached goal ", goal)
+	LevelSignals.notify_load_next_level()
 
 func _on_reset_pressed(player: Player):
 	print("reset level")

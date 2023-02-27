@@ -29,11 +29,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/entity/entity.gd"
 }, {
-"base": "Node2D",
-"class": "GameInstance",
-"language": "GDScript",
-"path": "res://src/game_instance.gd"
-}, {
 "base": "Area2D",
 "class": "Goal",
 "language": "GDScript",
@@ -74,7 +69,6 @@ _global_script_class_icons={
 "ActorController": "",
 "Carrot": "",
 "Entity": "",
-"GameInstance": "",
 "Goal": "",
 "InputDevice": "",
 "Level": "",
@@ -93,6 +87,7 @@ config/icon="res://icon.png"
 [autoload]
 
 LevelSignals="*res://src/autoload/level_signals.gd"
+GameSheet="*res://src/autoload/game_sheet.gd"
 
 [display]
 

@@ -1,16 +1,21 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/root.gd" type="Script" id=1]
-[ext_resource path="res://src/menu/home/home.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/level/test/level_test.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/game_instance.gd" type="Script" id=4]
+[ext_resource path="res://src/game_data.tres" type="Resource" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "class_name GameInstance
+extends Node2D
+
+func _ready():
+	pass
+"
 
 [node name="ViewportContainer" type="ViewportContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
-home_scene = ExtResource( 2 )
-level_scene = ExtResource( 3 )
+game_data = ExtResource( 2 )
 root_node = NodePath("Control")
 
 [node name="Control" type="Control" parent="."]
@@ -23,4 +28,4 @@ anchor_bottom = 1.0
 color = Color( 0.160784, 0.152941, 0.152941, 1 )
 
 [node name="GameInstance" type="Node2D" parent="."]
-script = ExtResource( 4 )
+script = SubResource( 1 )
