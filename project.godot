@@ -54,6 +54,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/level/level.gd"
 }, {
+"base": "Node",
+"class": "LevelCard",
+"language": "GDScript",
+"path": "res://src/menu/level_card/level_card.gd"
+}, {
+"base": "Node",
+"class": "LevelChooser",
+"language": "GDScript",
+"path": "res://src/menu/level_chooser/level_chooser.gd"
+}, {
 "base": "InputDevice",
 "class": "LocalInputDevice",
 "language": "GDScript",
@@ -84,6 +94,8 @@ _global_script_class_icons={
 "HUD": "",
 "InputDevice": "",
 "Level": "",
+"LevelCard": "",
+"LevelChooser": "",
 "LocalInputDevice": "",
 "Menu": "",
 "Player": "",
@@ -101,6 +113,8 @@ config/icon="res://icon.png"
 LevelSignals="*res://src/autoload/level_signals.gd"
 GameSheet="*res://src/autoload/game_sheet.gd"
 LevelSheet="*res://src/autoload/level_sheet.gd"
+FontGenerator="*res://src/autoload/font_generator.gd"
+GameSignals="*res://src/autoload/game_signals.gd"
 
 [display]
 
@@ -179,6 +193,8 @@ move_down={
 
 [layer_names]
 
+2d_render/layer_1="game"
+2d_render/layer_2="hud"
 2d_physics/layer_1="player"
 2d_physics/layer_2="carrot"
 2d_physics/layer_3="goal"

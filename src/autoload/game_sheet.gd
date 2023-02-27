@@ -6,3 +6,5 @@ export(PackedScene) var home_scene
 export(PackedScene) var loading_scene
 # List of levels
 export(Array, Resource) var levels
+# The test level
+export(Resource) var test_level
