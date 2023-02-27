@@ -35,6 +35,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=1]
+radius = 3.0
 
 [node name="Carrot" type="Area2D"]
 collision_layer = 2

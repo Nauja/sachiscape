@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/level/level.gd" type="Script" id=1]
 [ext_resource path="res://src/entity/actor/player/player.tscn" type="PackedScene" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://src/hud/hud.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/entity/goal/goal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/entity/actor/player_controller.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/entity/carrot/carrot.tscn" type="PackedScene" id=7]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
@@ -27,15 +26,3 @@ position = Vector2( 144, 128 )
 unique_name_in_owner = true
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 4 )]
-
-[node name="Carrot" parent="." instance=ExtResource( 7 )]
-position = Vector2( 24, 96 )
-
-[node name="Carrot2" parent="." instance=ExtResource( 7 )]
-position = Vector2( 56, 96 )
-
-[node name="Carrot3" parent="." instance=ExtResource( 7 )]
-position = Vector2( 40, 72 )
-
-[node name="Carrot4" parent="." instance=ExtResource( 7 )]
-position = Vector2( 120, 88 )
