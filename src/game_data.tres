@@ -1,12 +1,12 @@
 [gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://src/autoload/game_sheet.gd" type="Script" id=1]
-[ext_resource path="res://src/level/level_2.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/level/level_1.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/level/level_test.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/level/level_2_data.tres" type="Resource" id=2]
+[ext_resource path="res://src/level/level_test_data.tres" type="Resource" id=3]
+[ext_resource path="res://src/level/level_1_data.tres" type="Resource" id=4]
 [ext_resource path="res://src/menu/home/home.tscn" type="PackedScene" id=5]
 
 [resource]
 script = ExtResource( 1 )
 home_scene = ExtResource( 5 )
-levels = [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ) ]
+levels = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ) ]

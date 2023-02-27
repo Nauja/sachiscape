@@ -1,5 +1,8 @@
 extends Node2D
 
+# Return the player energy
+var _get_energy: FuncRef
+
 # A carrot has been collected by the player
 signal carrot_collected(player, carrot)
 
@@ -14,6 +17,9 @@ signal reset_pressed(player)
 
 # Request to load the next level
 signal load_next_level()
+
+func get_energy() -> int:
+	return _get_energy.call_func() if _get_energy else 0
 
 func notify_carrot_collected(player, carrot):
 	emit_signal("carrot_collected", player, carrot)

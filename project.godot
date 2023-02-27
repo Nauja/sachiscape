@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/entity/carrot/carrot.gd"
 }, {
+"base": "Sprite",
+"class": "EnergyBar",
+"language": "GDScript",
+"path": "res://src/hud/energy_bar/energy_bar.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Entity",
 "language": "GDScript",
@@ -33,6 +38,11 @@ _global_script_classes=[ {
 "class": "Goal",
 "language": "GDScript",
 "path": "res://src/entity/goal/goal.gd"
+}, {
+"base": "CanvasLayer",
+"class": "HUD",
+"language": "GDScript",
+"path": "res://src/hud/hud.gd"
 }, {
 "base": "Node2D",
 "class": "InputDevice",
@@ -68,8 +78,10 @@ _global_script_class_icons={
 "Actor": "",
 "ActorController": "",
 "Carrot": "",
+"EnergyBar": "",
 "Entity": "",
 "Goal": "",
+"HUD": "",
 "InputDevice": "",
 "Level": "",
 "LocalInputDevice": "",
@@ -88,6 +100,7 @@ config/icon="res://icon.png"
 
 LevelSignals="*res://src/autoload/level_signals.gd"
 GameSheet="*res://src/autoload/game_sheet.gd"
+LevelSheet="*res://src/autoload/level_sheet.gd"
 
 [display]
 

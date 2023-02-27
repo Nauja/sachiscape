@@ -15,7 +15,9 @@ onready var _animation_player = $AnimationPlayer
 var velocity = Vector2.ZERO
 
 func _set_energy(val: int) -> void:
+	var old_energy = energy
 	energy = clamp(val, 0, _get_max_energy())
+	LevelSignals.notify_energy_changed(self, old_energy, energy)
 
 func _get_energy() -> int:
 	return energy
@@ -24,8 +26,9 @@ func _get_max_energy() -> int:
 	return 3
 
 func _ready():
+	LevelSignals._get_energy = funcref(self, "_get_energy")
 	_animation_player.play("idle")
-	energy = 0
+	_set_energy(1)
 
 func get_input():
 	var dir = 0
@@ -53,5 +56,4 @@ func collect_carrot(other) -> bool:
 		return false
 	
 	_set_energy(old_energy + 1)
-	LevelSignals.notify_energy_changed(self, old_energy, _get_energy())
 	return true

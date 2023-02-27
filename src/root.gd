@@ -31,7 +31,7 @@ func _load_home_scene() -> Node:
 	
 func _load_level_scene(index: int) -> Node:
 	index = clamp(index, 0, len(game_data.levels) - 1)
-	var instance = _load_scene(game_data.levels[index])
+	var instance = _load_scene(game_data.levels[index].scene)
 	_level_index = index
 	# do something
 	return instance
