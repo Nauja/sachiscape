@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/level/level.gd" type="Script" id=1]
 [ext_resource path="res://src/entity/actor/player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/level/wall.tres" type="TileSet" id=3]
+[ext_resource path="res://src/hud/hud.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/entity/goal/goal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/entity/actor/player_controller.tscn" type="PackedScene" id=6]
 
@@ -23,3 +24,5 @@ position = Vector2( 144, 128 )
 
 [node name="PlayerController" parent="." instance=ExtResource( 6 )]
 unique_name_in_owner = true
+
+[node name="CanvasLayer" parent="." instance=ExtResource( 4 )]

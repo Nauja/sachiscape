@@ -5,4 +5,4 @@ export(PackedScene) var home_scene
 # Reference to scene containing the loading screen
 export(PackedScene) var loading_scene
 # List of levels
-export(Array, PackedScene) var levels
+export(Array, Resource) var levels
