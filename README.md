@@ -1,11 +1,11 @@
 # sachiscape
 
-![Godot](https://img.shields.io/badge/Godot-3.5.1-blue)
 [![CI](https://github.com/Nauja/sachiscape/actions/workflows/CI.yml/badge.svg)](https://github.com/Nauja/sachiscape/actions/workflows/CI.yml)
 [![Pages](https://github.com/Nauja/sachiscape/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Nauja/sachiscape/actions/workflows/pages/pages-build-deployment)
+![Godot](https://img.shields.io/badge/Godot-3.5.1-blue)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/Nauja/sachiscape/master/LICENSE)
 
-Sachiscape is not only a full-featured 2D platformer game playable both in your browser at [https://nauja.github.io/sachiscape/](https://nauja.github.io/sachiscape/), and on your desktop, but also a reference for coding 2D games with [Godot](https://godotengine.org/) thanks to its open source code.
+Sachiscape is a full-featured 2D platformer game playable both in your browser, and on your desktop, but also a reference for coding 2D games with [Godot](https://godotengine.org/) thanks to its open source code.
 
 :warning: this game is not released yet and is still in work in progress.
 
