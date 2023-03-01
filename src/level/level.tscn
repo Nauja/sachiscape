@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/level/level.gd" type="Script" id=1]
 [ext_resource path="res://src/entity/actor/player/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/hud/hud.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/entity/actor/player_controller.tscn" type="PackedScene" id=6]
 
 [node name="Level" type="Node2D"]
@@ -13,3 +14,5 @@ position = Vector2( 96, 120 )
 
 [node name="PlayerController" parent="." instance=ExtResource( 6 )]
 unique_name_in_owner = true
+
+[node name="HUD" parent="." instance=ExtResource( 3 )]

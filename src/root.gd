@@ -31,31 +31,58 @@ func _ready():
 	LevelSignals.connect("load_next_level", self, "_on_load_next_level")
 	_game_state = SaveManager.load()
 	# Display the home menu when ready
-	_current_scene = _load_home_scene()
+	_load_home()
 	_root.queue_free()
-	
-func _load_scene(scene: PackedScene) -> Node:
-	var instance = scene.instance()
-	add_child(instance)
-	return instance
 
 # Load the home scene and bind events
-func _load_home_scene() -> Node:
-	var instance = _load_scene(_game_sheet.home_scene)
+func _load_home() -> Node:
+	assert(_game_sheet.home_scene)
+	var instance = _game_sheet.home_scene.instance()
+	assert(instance)
 	instance.connect("play", self, "_on_play")
+	_current_scene = instance
+	add_child(instance)
 	return instance
 	
-func _load_level_scene(index: int) -> Node:
+# Load a level from a PackedScene
+func _load_level_scene(scene: PackedScene) -> Node:
+	# Load the generic scene
+	assert(_game_sheet.level_scene)
+	var instance = _game_sheet.level_scene.instance()
+	assert(instance)
+	# Load the level specific scene
+	var sublevel = scene.instance()
+	print("sublevel scene ", sublevel)
+	assert(sublevel)
+	instance.add_child(sublevel)
+	add_child(instance)
+	return instance
+	
+# Load a level by index
+func _load_level(index: int) -> Node:
+	assert(_game_sheet.level_scene)
+	assert(index >= 0 and index < len(_game_sheet.levels))
+	assert(_game_sheet.levels[index].scene)
 	index = clamp(index, 0, len(_game_sheet.levels) - 1)
-	var instance = _load_scene(_game_sheet.levels[index].scene)
-	_level_index = index
-	# do something
+	var instance = _load_level_scene(_game_sheet.levels[index].scene)
+	if instance:
+		_level_index = index
+		_current_scene = instance
 	return instance
 	
-func _load_test_level_scene() -> Node:
-	var instance = _load_scene(_game_sheet.test_level.scene)
-	_level_index = -1
-	# do something
+# Reload the current level
+func _reload_level() -> Node:
+	return _load_level(_level_index)
+	
+# Load the level at next index
+func _load_next_level() -> Node:
+	return _load_level(_level_index + 1)
+	
+func _load_test_level() -> Node:
+	var instance = _load_level_scene(_game_sheet.test_level.scene)
+	if instance:
+		_level_index = -1
+		_current_scene = instance
 	return instance
 	
 func _remove_current_scene():
@@ -64,11 +91,11 @@ func _remove_current_scene():
 
 func _on_level_selected(index: int):
 	_remove_current_scene()
-	_current_scene = _load_level_scene(index)
+	_load_level(index)
 	
 func _on_test_level_selected():
 	_remove_current_scene()
-	_current_scene = _load_test_level_scene()
+	_load_test_level()
 
 func _on_reset_save():
 	_game_state.level_progress = 0
@@ -76,11 +103,11 @@ func _on_reset_save():
 	
 func _on_reset_pressed(player: Player):
 	_remove_current_scene()
-	_current_scene = _load_level_scene(_level_index)
+	_reload_level()
 	
 func _on_back_to_main_menu_pressed(player: Player):
 	_remove_current_scene()
-	_current_scene = _load_home_scene()
+	_load_home()
 	
 func _on_goal_reached(player: Player, goal: Goal):
 	if _level_index >= _game_state.level_progress:
@@ -91,6 +118,6 @@ func _on_goal_reached(player: Player, goal: Goal):
 func _on_load_next_level():
 	_remove_current_scene()
 	if _level_index + 1 < len(_game_sheet.levels):
-		_current_scene = _load_level_scene(_level_index + 1)
+		_load_next_level()
 	else:
-		_current_scene = _load_home_scene()
+		_load_home()

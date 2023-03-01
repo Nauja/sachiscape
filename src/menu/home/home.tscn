@@ -59,6 +59,9 @@ text = "TEST"
 align = 1
 valign = 1
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/TestLevelCard"]
+unique_name_in_owner = true
+
 [node name="ResetSave" type="NinePatchRect" parent="Control"]
 margin_left = 112.0
 margin_top = 192.0
@@ -93,3 +96,5 @@ custom_fonts/font = ExtResource( 4 )
 text = "RSAVE"
 align = 1
 valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/ResetSave"]

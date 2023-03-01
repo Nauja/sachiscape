@@ -3,7 +3,7 @@
 [ext_resource path="res://src/hud/hud.gd" type="Script" id=1]
 [ext_resource path="res://src/hud/energy_bar/energy_bar.tscn" type="PackedScene" id=2]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer"]
 layer = 2
 script = ExtResource( 1 )
 
