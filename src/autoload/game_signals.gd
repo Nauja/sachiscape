@@ -1,8 +1,8 @@
 extends Node
 
-var _get_game_sheet: FuncRef
+var _get_game_sheet: Callable
 
-var _is_level_unlocked: FuncRef
+var _is_level_unlocked: Callable
 
 # A level has been selected in the main menu
 signal level_selected(index)
@@ -14,10 +14,10 @@ signal test_level_selected()
 signal reset_save()
 
 func get_game_sheet() -> GameSheet:
-	return _get_game_sheet.call_func() if _get_game_sheet else null
+	return _get_game_sheet.call() if _get_game_sheet else null
 
 func is_level_unlocked(index: int) -> bool:
-	return _is_level_unlocked.call_func(index) if _is_level_unlocked else false
+	return _is_level_unlocked.call(index) if _is_level_unlocked else false
 	
 func notify_level_selected(index: int) -> void:
 	emit_signal("level_selected", index)

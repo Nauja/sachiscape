@@ -1,6 +1,6 @@
 extends Node2D
 
-export(NodePath) var _target_path
+@export var _target_path: NodePath
 
 func _ready():
 	var target = get_node(_target_path)

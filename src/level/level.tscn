@@ -1,18 +1,18 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://txe1v6itfm01"]
 
-[ext_resource path="res://src/level/level.gd" type="Script" id=1]
-[ext_resource path="res://src/entity/actor/player/player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/hud/hud.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/entity/actor/player_controller.tscn" type="PackedScene" id=6]
+[ext_resource type="Script" path="res://src/level/level.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://bq0axsufmsry1" path="res://src/entity/actor/player/player.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://src/hud/hud.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://dnefqr713ooy3" path="res://src/entity/actor/player_controller.tscn" id="6"]
 
 [node name="Level" type="Node2D"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="Player" parent="." instance=ExtResource("2")]
 unique_name_in_owner = true
-position = Vector2( 96, 120 )
+position = Vector2(96, 120)
 
-[node name="PlayerController" parent="." instance=ExtResource( 6 )]
+[node name="PlayerController" parent="." instance=ExtResource("6")]
 unique_name_in_owner = true
 
-[node name="HUD" parent="." instance=ExtResource( 3 )]
+[node name="HUD" parent="." instance=ExtResource("3")]

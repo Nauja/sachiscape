@@ -1,7 +1,7 @@
 class_name ActorController
 extends Node2D
 
-var actor: Actor setget set_actor, get_actor
+var actor: Actor : get = get_actor, set = set_actor
 
 func set_actor(other):
 	actor = other

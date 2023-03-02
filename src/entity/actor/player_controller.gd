@@ -3,10 +3,10 @@ class_name PlayerController
 extends ActorController
 
 # Unique id
-var id: int setget set_id, get_id
+var id: int : get = get_id, set = set_id
 
 # Connected input device
-onready var input_device: InputDevice = get_node("%InputDevice")
+@onready var input_device: InputDevice = %InputDevice
 
 var was_reset_pressed: bool
 

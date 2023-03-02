@@ -4,7 +4,7 @@ extends Menu
 signal play
 
 func _ready():
-	get_node("%ResetSaveButton").connect("pressed", self, "_on_reset_save_pressed")
+	%ResetSaveButton.connect("pressed", _on_reset_save_pressed)
 
 func _on_PlayButton_pressed():
 	emit_signal("play")

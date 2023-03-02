@@ -1,9 +1,9 @@
 class_name LevelChooser
 extends Node
 
-export(PackedScene) var _level_card_scene
+@export var _level_card_scene: PackedScene
 
-onready var _grid: GridContainer = get_node("%GridContainer")
+@onready var _grid: GridContainer = %GridContainer
 
 func _ready():
 	_populate()
@@ -11,6 +11,7 @@ func _ready():
 func _populate() -> void:
 	var game_sheet = GameSignals.get_game_sheet()
 	for i in range(len(game_sheet.levels)):
-		var card = _level_card_scene.instance()
+		print("instance")
+		var card = _level_card_scene.instantiate()
 		card.index = i
 		_grid.add_child(card)

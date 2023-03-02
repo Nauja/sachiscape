@@ -1,7 +1,7 @@
 class_name EnergyBar
-extends Sprite
+extends Sprite2D
 
-export(Array, NodePath) var _fills_paths
+@export var _fills_paths: Array[NodePath]
 var _fills: Array
 
 func _set_energy(val: int) -> void:
@@ -14,7 +14,7 @@ func _ready():
 		_fills.append(get_node(_fills_paths[i]))
 		_fills[i].visible = false
 		
-	LevelSignals.connect("energy_changed", self, "_on_energy_changed")
+	LevelSignals.connect("energy_changed", _on_energy_changed)
 	_set_energy(LevelSignals.get_energy())
 	
 func _on_energy_changed(player: Player, old_value: int, new_value: int) -> void:

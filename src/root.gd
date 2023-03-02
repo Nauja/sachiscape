@@ -1,12 +1,12 @@
 # Root scene for loading everything
-extends ViewportContainer
+extends SubViewportContainer
 
 # Game data configuration
-export(Resource) var _game_sheet
+@export var _game_sheet: Resource
 
 # The root node to hide when the home menu is loaded
-export(NodePath) var root_node
-onready var _root = get_node(root_node)
+@export var root_node: NodePath
+@onready var _root = get_node(root_node)
 
 var _current_scene
 # Index of the current level
@@ -20,15 +20,15 @@ func _is_level_unlocked(index: int) -> bool:
 	return _game_state.level_progress >= index if _game_state else false
 
 func _ready():
-	GameSignals._get_game_sheet = funcref(self, "_get_game_sheet")
-	GameSignals._is_level_unlocked = funcref(self, "_is_level_unlocked")
-	GameSignals.connect("level_selected", self, "_on_level_selected")
-	GameSignals.connect("test_level_selected", self, "_on_test_level_selected")
-	GameSignals.connect("reset_save", self, "_on_reset_save")
-	LevelSignals.connect("reset_pressed", self, "_on_reset_pressed")
-	LevelSignals.connect("back_to_main_menu_pressed", self, "_on_back_to_main_menu_pressed")
-	LevelSignals.connect("goal_reached", self, "_on_goal_reached")
-	LevelSignals.connect("load_next_level", self, "_on_load_next_level")
+	GameSignals._get_game_sheet = _get_game_sheet
+	GameSignals._is_level_unlocked = _is_level_unlocked
+	GameSignals.connect("level_selected", _on_level_selected)
+	GameSignals.connect("test_level_selected", _on_test_level_selected)
+	GameSignals.connect("reset_save", _on_reset_save)
+	LevelSignals.connect("reset_pressed", _on_reset_pressed)
+	LevelSignals.connect("back_to_main_menu_pressed", _on_back_to_main_menu_pressed)
+	LevelSignals.connect("goal_reached", _on_goal_reached)
+	LevelSignals.connect("load_next_level", _on_load_next_level)
 	_game_state = SaveManager.load()
 	# Display the home menu when ready
 	_load_home()
@@ -37,9 +37,8 @@ func _ready():
 # Load the home scene and bind events
 func _load_home() -> Node:
 	assert(_game_sheet.home_scene)
-	var instance = _game_sheet.home_scene.instance()
+	var instance = _game_sheet.home_scene.instantiate()
 	assert(instance)
-	instance.connect("play", self, "_on_play")
 	_current_scene = instance
 	add_child(instance)
 	return instance
@@ -48,10 +47,10 @@ func _load_home() -> Node:
 func _load_level_scene(scene: PackedScene) -> Node:
 	# Load the generic scene
 	assert(_game_sheet.level_scene)
-	var instance = _game_sheet.level_scene.instance()
+	var instance = _game_sheet.level_scene.instantiate()
 	assert(instance)
 	# Load the level specific scene
-	var sublevel = scene.instance()
+	var sublevel = scene.instantiate()
 	print("sublevel scene ", sublevel)
 	assert(sublevel)
 	instance.add_child(sublevel)

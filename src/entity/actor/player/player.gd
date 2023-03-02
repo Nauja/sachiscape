@@ -1,18 +1,16 @@
 class_name Player
 extends Actor
 
-export (int) var speed = 120
-export (int) var jump_speed = -180
-export (int) var gravity = 400
-export (float, 0, 1.0) var friction = 0.1
-export (float, 0, 1.0) var acceleration = 0.25
+@export var speed: int = 120
+@export var jump_speed: int = -180
+@export var gravity: int = 400
+@export_range(0, 1.0) var friction: float = 0.1
+@export_range(0, 1.0) var acceleration: float = 0.25
 
-var energy: int setget _set_energy, _get_energy
-var max_energy: int setget , _get_max_energy
+var energy: int : get = _get_energy, set = _set_energy
+var max_energy: int : get = _get_max_energy
 
-onready var _animation_player = $AnimationPlayer
-
-var velocity = Vector2.ZERO
+@onready var _animation_player = %AnimationPlayer
 
 func _set_energy(val: int) -> void:
 	var old_energy = energy
@@ -26,7 +24,7 @@ func _get_max_energy() -> int:
 	return 3
 
 func _ready():
-	LevelSignals._get_energy = funcref(self, "_get_energy")
+	LevelSignals._get_energy = Callable(self, "_get_energy")
 	_animation_player.play("idle")
 	_set_energy(1)
 
@@ -37,14 +35,17 @@ func get_input():
 	if input.x < 0:
 		dir -= 1
 	if dir != 0:
-		velocity.x = lerp(velocity.x, dir * speed, acceleration)
+		velocity.x = lerp(velocity.x, float(dir * speed), float(acceleration))
 	else:
-		velocity.x = lerp(velocity.x, 0, friction)
+		velocity.x = lerp(velocity.x, float(0), friction)
 
 func _physics_process(delta):
 	get_input()
 	velocity.y += gravity * delta
-	velocity = move_and_slide(velocity, Vector2.UP)
+	set_velocity(velocity)
+	set_up_direction(Vector2.UP)
+	move_and_slide()
+	velocity = velocity
 	if want_jump:
 		if is_on_floor():
 			want_jump = false

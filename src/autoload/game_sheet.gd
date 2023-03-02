@@ -1,12 +1,12 @@
 extends Resource
 
-# Reference to scene containing the home menu
-export(PackedScene) var home_scene
-# Reference to scene containing the loading screen
-export(PackedScene) var loading_scene
-# Reference to the generic level scene
-export(PackedScene) var level_scene
+# RefCounted to scene containing the home menu
+@export var home_scene: PackedScene
+# RefCounted to scene containing the loading screen
+@export var loading_scene: PackedScene
+# RefCounted to the generic level scene
+@export var level_scene: PackedScene
 # List of levels
-export(Array, Resource) var levels
+@export var levels: Array[Resource]
 # The test level
-export(Resource) var test_level
+@export var test_level: Resource
