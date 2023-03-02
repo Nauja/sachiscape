@@ -71,7 +71,10 @@ func _load_level(index: int) -> Node:
 	
 # Reload the current level
 func _reload_level() -> Node:
-	return _load_level(_level_index)
+	if _level_index >= 0:
+		return _load_level(_level_index)
+		
+	return _load_test_level()
 	
 # Load the level at next index
 func _load_next_level() -> Node:

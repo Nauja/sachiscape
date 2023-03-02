@@ -45,7 +45,13 @@ func _physics_process(delta):
 	set_velocity(velocity)
 	set_up_direction(Vector2.UP)
 	move_and_slide()
-	velocity = velocity
+	for i in get_slide_collision_count():
+		var body = get_slide_collision(i).get_collider()
+		if not body is TileMap:
+			continue
+		if body.is_in_group("spike"):
+			LevelSignals.notify_reset_pressed(self)
+			return
 	if want_jump:
 		if is_on_floor():
 			want_jump = false
