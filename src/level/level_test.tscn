@@ -1,21 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://br815m2tdk2o5"]
+[gd_scene load_steps=7 format=3 uid="uid://br815m2tdk2o5"]
 
 [ext_resource type="PackedScene" uid="uid://cfynpc4b03264" path="res://src/level/level_tilemap.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://src/entity/player_start.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://bft38n0st5gin" path="res://src/level/spike_tilemap.tscn" id="2_opaqm"]
 [ext_resource type="PackedScene" path="res://src/entity/goal/goal.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://ce4kjwjsf0uya" path="res://src/entity/actor/camera/camera.tscn" id="6_8tujn"]
 [ext_resource type="PackedScene" uid="uid://dvq7cie7efy3e" path="res://src/entity/carrot/carrot.tscn" id="7"]
 
 [node name="LevelTest" type="Node2D"]
 
 [node name="LevelTileMap" parent="." instance=ExtResource("1")]
-layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0, 327680, 0, 0, 393216, 0, 0, 458752, 0, 0, 524288, 0, 0, 589824, 0, 0, 786432, 0, 0, 786433, 0, 0, 786434, 0, 0, 786435, 0, 0, 786436, 0, 0, 786437, 0, 0, 786438, 0, 0, 786439, 0, 0, 786440, 0, 0, 786441, 0, 0, 786442, 0, 0, 786443, 0, 0, 786444, 0, 0, 786445, 0, 0, 851968, 0, 0, 851969, 0, 0, 851970, 0, 0, 851971, 0, 0, 851972, 0, 0, 851973, 0, 0, 851974, 0, 0, 851975, 0, 0, 851976, 0, 0, 851977, 0, 0, 851978, 0, 0, 851979, 0, 0, 851980, 0, 0, 851981, 0, 0)
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0, 327680, 0, 0, 393216, 0, 0, 458752, 0, 0, 524288, 0, 0, 589824, 0, 0, 786432, 0, 0, 786433, 0, 0, 786434, 0, 0, 786435, 0, 0, 786436, 0, 0, 786437, 0, 0, 786438, 0, 0, 786439, 0, 0, 786440, 0, 0, 786441, 0, 0, 786442, 0, 0, 786443, 0, 0, 786444, 0, 0, 786445, 0, 0, 851968, 0, 0, 851969, 0, 0, 851970, 0, 0, 851971, 0, 0, 851972, 0, 0, 851973, 0, 0, 851974, 0, 0, 851975, 0, 0, 851976, 0, 0, 851977, 0, 0, 851978, 0, 0, 851979, 0, 0, 851980, 0, 0, 851981, 0, 0, 786446, 0, 0, 786447, 0, 0, 786448, 0, 0, 786449, 0, 0, 786450, 0, 0, 786451, 0, 0, 786452, 0, 0, 786453, 0, 0, 786454, 0, 0, 786455, 0, 0, 786456, 0, 0, 786457, 0, 0, 786458, 0, 0, 851982, 0, 0, 851983, 0, 0, 851984, 0, 0, 851985, 0, 0, 851986, 0, 0, 851987, 0, 0, 851988, 0, 0, 851989, 0, 0, 851990, 0, 0, 851991, 0, 0, 851992, 0, 0, 851993, 0, 0, 851994, 0, 0, 786459, 0, 0, 851995, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0)
 
 [node name="SpikeTileMap" parent="." instance=ExtResource("2_opaqm")]
-layer_0/tile_data = PackedInt32Array(720909, 65536, 0, 655373, 65536, 0, 589837, 65536, 0, 524301, 65536, 0, 458765, 65536, 0, 393229, 65536, 0, 327693, 65536, 0, 262157, 65536, 0, 196621, 65536, 0, 131085, 65536, 0, 65549, 65536, 0, 720896, 65536, 0, 655360, 65536, 0)
+layer_0/tile_data = PackedInt32Array(720896, 65536, 0, 655360, 65536, 0, 720923, 65536, 0, 655387, 65536, 0, 589851, 65536, 0, 524315, 65536, 0, 458779, 65536, 0, 393243, 65536, 0, 327707, 65536, 0, 262171, 65536, 0, 196635, 65536, 0, 131099, 65536, 0, 65563, 65536, 0)
 
 [node name="Goal" parent="." instance=ExtResource("5")]
-position = Vector2(144, 192)
+position = Vector2(336, 192)
 
 [node name="PlayerStart" parent="." instance=ExtResource("2")]
 position = Vector2(88, 192)
@@ -31,3 +32,7 @@ position = Vector2(48, 136)
 
 [node name="Carrot4" parent="." instance=ExtResource("7")]
 position = Vector2(128, 152)
+
+[node name="Camera" parent="." instance=ExtResource("6_8tujn")]
+position = Vector2(352, 24)
+rotation = 1.57079

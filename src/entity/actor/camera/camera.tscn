@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://ce4kjwjsf0uya"]
+
+[ext_resource type="Script" path="res://src/entity/actor/camera/camera.gd" id="1_ttch2"]
+[ext_resource type="Texture2D" uid="uid://7wxlim1xdbbo" path="res://src/entity/actor/camera/camera.png" id="2_oxqwq"]
+[ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="3_orepx"]
+
+[node name="Camera" type="CharacterBody2D"]
+script = ExtResource("1_ttch2")
+_cone_area_path = NodePath("VisionCone2D/VisionConeArea")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_oxqwq")
+hframes = 4
+vframes = 4
+
+[node name="VisionCone2D" parent="." instance=ExtResource("3_orepx")]
+rotation = -1.5708
+angle_deg = 45
+ray_count = 50
+
+[node name="VisionConeRenderer" parent="VisionCone2D" index="0"]
+color = Color(0.996078, 0.717647, 0.662745, 0.286275)
+
+[node name="VisionConeArea" parent="VisionCone2D" index="1"]
+collision_layer = 16
+
+[editable path="VisionCone2D"]

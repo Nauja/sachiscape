@@ -12,6 +12,9 @@ signal energy_changed(player, old_value, new_value)
 # Player reached the goal
 signal goal_reached(player, goal)
 
+# Player detected by an enemy
+signal player_detected(player, other)
+
 # Player pressed the reset button
 signal reset_pressed(player)
 
@@ -19,25 +22,36 @@ signal reset_pressed(player)
 signal back_to_main_menu_pressed(player)
 
 # Request to load the next level
-signal load_next_level()
+signal load_next_level
+
 
 func get_energy() -> int:
 	return _get_energy.call() if _get_energy else 0
 
+
 func notify_carrot_collected(player, carrot):
 	emit_signal("carrot_collected", player, carrot)
-	
+
+
 func notify_energy_changed(player, old_value, new_value):
 	emit_signal("energy_changed", player, old_value, new_value)
-	
+
+
 func notify_goal_reached(player, goal):
 	emit_signal("goal_reached", player, goal)
-	
+
+
+func notify_player_detected(player, other):
+	emit_signal("player_detected", player, other)
+
+
 func notify_reset_pressed(player):
 	emit_signal("reset_pressed", player)
-	
+
+
 func notify_back_to_main_menu_pressed(player):
-	emit_signal("back_to_main_menu_pressed", player)	
-	
+	emit_signal("back_to_main_menu_pressed", player)
+
+
 func notify_load_next_level():
 	emit_signal("load_next_level")

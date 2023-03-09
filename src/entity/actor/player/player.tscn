@@ -47,6 +47,7 @@ _data = {
 z_index = 1
 collision_mask = 7
 script = ExtResource("1")
+gravity_multiplier_falling = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("1")

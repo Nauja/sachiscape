@@ -5,8 +5,10 @@ extends Node
 
 @onready var _grid: GridContainer = %GridContainer
 
+
 func _ready():
 	_populate()
+
 
 func _populate() -> void:
 	var game_sheet = GameSignals.get_game_sheet()
