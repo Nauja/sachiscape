@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://gekaiuucofd"]
+
+[ext_resource type="TileSet" uid="uid://dre8ws48usr3x" path="res://src/level/tilemap/dirt_tileset.tres" id="1_grnud"]
+[ext_resource type="Script" path="res://src/level/tilemap/dirt_tilemap.gd" id="2_ifqca"]
+
+[node name="DirtTileMap" type="TileMap"]
+tile_set = ExtResource("1_grnud")
+format = 2
+script = ExtResource("2_ifqca")

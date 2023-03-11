@@ -10,3 +10,5 @@ extends Resource
 @export var levels: Array[Resource]
 # The test level
 @export var test_level: Resource
+# The player configuration
+@export var player_sheet: Resource

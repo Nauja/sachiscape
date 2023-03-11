@@ -24,6 +24,12 @@ signal back_to_main_menu_pressed(player)
 # Request to load the next level
 signal load_next_level
 
+# A player action is available
+signal action_available(player, target)
+
+# The action is no longer available
+signal action_unavailable(player, target)
+
 
 func get_energy() -> int:
 	return _get_energy.call() if _get_energy else 0
@@ -55,3 +61,11 @@ func notify_back_to_main_menu_pressed(player):
 
 func notify_load_next_level():
 	emit_signal("load_next_level")
+
+
+func notify_action_available(player, target: Entity):
+	emit_signal("action_available", player, target)
+
+
+func notify_action_unavailable(player, target: Entity):
+	emit_signal("action_unavailable", player, target)

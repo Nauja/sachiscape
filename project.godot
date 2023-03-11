@@ -23,6 +23,8 @@ LevelSheet="*res://src/autoload/level_sheet.gd"
 FontGenerator="*res://src/autoload/font_generator.gd"
 GameSignals="*res://src/autoload/game_signals.gd"
 SaveManager="*res://src/autoload/save_manager.gd"
+ActorSheet="*res://src/autoload/actor_sheet.gd"
+PlayerSheet="*res://src/autoload/player_sheet.gd"
 
 [display]
 
@@ -108,6 +110,7 @@ move_down={
 2d_physics/layer_5="vision"
 2d_physics/layer_6="vent"
 2d_physics/layer_7="spike"
+2d_physics/layer_8="special"
 
 [physics]
 

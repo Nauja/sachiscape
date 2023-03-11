@@ -12,6 +12,7 @@ var id: int:
 
 var was_reset_pressed: bool
 var _was_jump_pressed: bool
+var _was_action_pressed: bool
 
 
 func set_id(val: int) -> void:
@@ -21,10 +22,6 @@ func set_id(val: int) -> void:
 
 func get_id() -> int:
 	return id
-
-
-func _ready():
-	print("input device ", input_device)
 
 
 func _process(delta):
@@ -54,11 +51,20 @@ func _process(delta):
 	if input_device.is_action_pressed("jump"):
 		actor.is_jump_pressed = true
 		if not _was_jump_pressed:
-			actor.want_jump_timer = 0.1
+			actor.want_jump_timer = actor.jump_input_delay
 			_was_jump_pressed = true
 	else:
 		actor.is_jump_pressed = false
 		_was_jump_pressed = false
+
+	if input_device.is_action_pressed("action"):
+		actor.is_action_pressed = true
+		if not _was_action_pressed:
+			actor.want_action_timer = actor.action_input_delay
+			_was_action_pressed = true
+	else:
+		actor.is_action_pressed = false
+		_was_action_pressed = false
 
 	if input_device.is_action_just_released("reset"):
 		LevelSignals.notify_reset_pressed(actor)
