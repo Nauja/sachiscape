@@ -12,6 +12,7 @@ func _process(delta):
 
 # Push a new action to the entity
 func push_action(action: EntityAction):
+	print(action)
 	if _current_action:
 		_current_action.cancel()
 

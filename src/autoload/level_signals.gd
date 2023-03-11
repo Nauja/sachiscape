@@ -3,6 +3,12 @@ extends Node2D
 # Return the player energy
 var _get_energy: Callable
 
+# Return the nearest diggable tile around a position or null
+var _find_diggable_tile: Callable
+
+# Return the nearest exit dirt tile around a position or null
+var _find_exit_dirt_tile: Callable
+
 # A carrot has been collected by the player
 signal carrot_collected(player, carrot)
 
@@ -33,6 +39,14 @@ signal action_unavailable(player, target)
 
 func get_energy() -> int:
 	return _get_energy.call() if _get_energy else 0
+
+
+func find_diggable_tile(pos: Vector2):
+	return _find_diggable_tile.call(pos) if _find_diggable_tile else null
+
+
+func find_exit_dirt_tile(pos: Vector2):
+	return _find_exit_dirt_tile.call(pos) if _find_exit_dirt_tile else null
 
 
 func notify_carrot_collected(player, carrot):

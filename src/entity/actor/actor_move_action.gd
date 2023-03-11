@@ -5,6 +5,7 @@ extends ActorAction
 
 func _do_start():
 	super()
+	actor.show()
 	actor.animation_player.play("idle")
 
 
@@ -32,7 +33,7 @@ func _physics_process(delta):
 	actor.move_and_slide()
 
 	if actor.is_on_floor():
-		actor.is_on_ground_timer = 0.1
+		actor.is_on_ground = true
 
 	if actor.is_jumping:
 		if actor.is_on_floor():
@@ -46,7 +47,7 @@ func _physics_process(delta):
 
 func jump() -> void:
 	if actor.is_on_ground:
-		actor.want_jump_timer = 0.0
+		actor.want_jump = false
 		actor.velocity.y = actor.jump_speed
 		actor.is_jumping = true
-		actor.is_on_ground_timer = 0.0
+		actor.is_on_ground = false

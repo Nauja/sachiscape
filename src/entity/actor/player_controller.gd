@@ -51,7 +51,7 @@ func _process(delta):
 	if input_device.is_action_pressed("jump"):
 		actor.is_jump_pressed = true
 		if not _was_jump_pressed:
-			actor.want_jump_timer = actor.jump_input_delay
+			actor.want_jump = true
 			_was_jump_pressed = true
 	else:
 		actor.is_jump_pressed = false
@@ -60,7 +60,7 @@ func _process(delta):
 	if input_device.is_action_pressed("action"):
 		actor.is_action_pressed = true
 		if not _was_action_pressed:
-			actor.want_action_timer = actor.action_input_delay
+			actor.want_action = true
 			_was_action_pressed = true
 	else:
 		actor.is_action_pressed = false

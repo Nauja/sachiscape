@@ -1,6 +1,9 @@
 # Generic actor configuration
 extends Resource
 
+# The scene to spawn
+@export var scene: PackedScene
+
 # Physics
 @export var speed: int = 120
 @export var jump_speed: int = -180
@@ -12,3 +15,9 @@ extends Resource
 # Input
 @export var jump_input_delay: float = 0.1
 @export var action_input_delay: float = 0.1
+
+# Scene to spawn when digging
+@export var _digger_sheet: Resource
+var digger_sheet: ActorSheet:
+	get:
+		return _digger_sheet

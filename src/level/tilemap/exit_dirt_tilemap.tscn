@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cemdyx0qfbge2"]
+
+[ext_resource type="TileSet" uid="uid://djj5l5cxhellc" path="res://src/level/tilemap/exit_dirt_tileset.tres" id="1_6tbl1"]
+[ext_resource type="Script" path="res://src/level/tilemap/exit_dirt_tilemap.gd" id="2_4nnr7"]
+
+[node name="ExitDirtTileMap" type="TileMap"]
+tile_set = ExtResource("1_6tbl1")
+format = 2
+script = ExtResource("2_4nnr7")

@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://dtql5weigld56"]
+
+[ext_resource type="Texture2D" uid="uid://fkp8su8g11nb" path="res://src/entity/actor/digger/digger.png" id="1_4j7xr"]
+[ext_resource type="Script" path="res://src/entity/actor/digger/digger.gd" id="1_m4irm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p4bd0"]
+
+[sub_resource type="Animation" id="Animation_lif6o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_hj733"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ywdmi"]
+_data = {
+"RESET": SubResource("Animation_lif6o"),
+"idle": SubResource("Animation_hj733")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dme18"]
+radius = 7.0
+
+[node name="Digger" type="CharacterBody2D"]
+collision_layer = 512
+collision_mask = 1032
+script = ExtResource("1_m4irm")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 512
+collision_mask = 1025
+
+[node name="InteractionCollisionShape" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_p4bd0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4j7xr")
+hframes = 16
+vframes = 16
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_ywdmi")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dme18")
