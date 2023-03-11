@@ -106,6 +106,8 @@ move_down={
 2d_physics/layer_3="goal"
 2d_physics/layer_4="wall"
 2d_physics/layer_5="vision"
+2d_physics/layer_6="vent"
+2d_physics/layer_7="spike"
 
 [physics]
 

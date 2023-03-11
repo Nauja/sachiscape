@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bft38n0st5gin"]
+
+[ext_resource type="TileSet" uid="uid://4x1jhg6c50lv" path="res://src/level/tilemap/spike_tileset.tres" id="1_wnjt8"]
+
+[node name="SpikeTileMap" type="TileMap" groups=["spike"]]
+tile_set = ExtResource("1_wnjt8")
+format = 2

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhshoh2ywims0"]
+
+[ext_resource type="TileSet" uid="uid://cvrmck0y3b3s2" path="res://src/level/tilemap/vent_tileset.tres" id="1_ye6bt"]
+[ext_resource type="Script" path="res://src/level/tilemap/vent_tilemap.gd" id="2_yu005"]
+
+[node name="VentTileMap" type="TileMap" groups=["vent"]]
+tile_set = ExtResource("1_ye6bt")
+format = 2
+layer_0/name = "interior"
+layer_1/name = "entrance"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array()
+script = ExtResource("2_yu005")
+fade_speed = 5.0

@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bq0axsufmsry1"]
+[gd_scene load_steps=9 format=3 uid="uid://bq0axsufmsry1"]
 
 [ext_resource type="Script" path="res://src/entity/actor/player/player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://cmhtpg41826su" path="res://src/entity/actor/player/player.png" id="2"]
 
-[sub_resource type="CircleShape2D" id="1"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_7h6le"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3jx7a"]
 radius = 7.0
 
 [sub_resource type="Animation" id="6"]
@@ -21,6 +24,21 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_6rqsk"]
+resource_name = "crouch"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
 [sub_resource type="Animation" id="5"]
 resource_name = "idle"
 loop_mode = 1
@@ -36,21 +54,55 @@ tracks/0/keys = {
 "update": 1,
 "values": [0, 1]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5l52k"]
 _data = {
 "RESET": SubResource("6"),
+"crouch": SubResource("Animation_6rqsk"),
 "idle": SubResource("5")
 }
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
-collision_mask = 7
+collision_mask = 8
+platform_floor_layers = 4294967176
+platform_wall_layers = 8
 script = ExtResource("1")
 gravity_multiplier_falling = 2.0
 
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_mask = 98
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_7h6le")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("1")
+shape = SubResource("CircleShape2D_3jx7a")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

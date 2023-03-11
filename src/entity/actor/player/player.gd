@@ -10,13 +10,20 @@ extends Actor
 
 var is_jumping: bool
 var gravity_multiplier: float = 1
+
 var energy: int:
 	get = _get_energy,
 	set = _set_energy
 var max_energy: int:
 	get = _get_max_energy
 
+var is_on_ground_timer: float
+var is_on_ground: bool:
+	get:
+		return is_on_ground_timer > 0.0
+
 @onready var _animation_player = %AnimationPlayer
+@onready var _area2d = %Area2D
 
 
 func _set_energy(val: int) -> void:
@@ -36,6 +43,10 @@ func _get_max_energy() -> int:
 func _ready():
 	LevelSignals._get_energy = Callable(self, "_get_energy")
 	_animation_player.play("idle")
+	_area2d.connect("area_entered", _on_area_entered)
+	_area2d.connect("area_exited", _on_area_exited)
+	_area2d.connect("body_entered", _on_body_entered)
+	_area2d.connect("body_exited", _on_body_exited)
 	_set_energy(1)
 
 
@@ -57,13 +68,10 @@ func _physics_process(delta):
 	set_velocity(velocity)
 	set_up_direction(Vector2.UP)
 	move_and_slide()
-	for i in get_slide_collision_count():
-		var body = get_slide_collision(i).get_collider()
-		if not body is TileMap:
-			continue
-		if body.is_in_group("spike"):
-			LevelSignals.notify_reset_pressed(self)
-			return
+
+	if is_on_floor():
+		is_on_ground_timer = 0.1
+
 	if is_jumping:
 		if is_on_floor():
 			is_jumping = false
@@ -71,10 +79,32 @@ func _physics_process(delta):
 		elif not is_jump_pressed or velocity.y >= 0:
 			gravity_multiplier = gravity_multiplier_falling
 	if want_jump:
-		if is_on_floor():
+		if is_on_ground:
 			want_jump_timer = 0.0
 			velocity.y = jump_speed
 			is_jumping = true
+			is_on_ground_timer = 0.0
+
+
+func _on_area_entered(area) -> void:
+	print(area)
+
+
+func _on_area_exited(area) -> void:
+	pass
+
+
+func _on_body_entered(body) -> void:
+	print(body)
+	if body.is_in_group("spike"):
+		LevelSignals.notify_reset_pressed(self)
+	elif body is VentTileMap:
+		body.on_body_entered(self)
+
+
+func _on_body_exited(body) -> void:
+	if body is VentTileMap:
+		body.on_body_exited(self)
 
 
 func collect_carrot(other) -> bool:

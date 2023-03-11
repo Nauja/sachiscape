@@ -67,7 +67,7 @@ _data = {
 [sub_resource type="CircleShape2D" id="1"]
 radius = 6.08276
 
-[node name="Carrot" type="Area2D"]
+[node name="Carrot" type="Area2D" groups=["carrot"]]
 collision_layer = 2
 monitorable = false
 script = ExtResource("1")

@@ -6,7 +6,7 @@ extends Area2D
 
 func _ready():
 	_animation_player.play("idle")
-	self.connect("body_entered", _on_body_entered)
+	connect("body_entered", _on_body_entered)
 
 
 func _on_body_entered(body):
