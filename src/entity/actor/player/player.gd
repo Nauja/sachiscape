@@ -23,6 +23,9 @@ var energy: int:
 	get = _get_energy,
 	set = _set_energy
 
+# Remaining duration of the super carrot effect
+var super_carrot_timer: float
+
 # If on a diggable surface
 var _can_dig: bool
 var can_dig: bool:
@@ -52,11 +55,26 @@ func _set_direction(value: Enums.EDirection) -> void:
 	_sprite.flip_h = value == Enums.EDirection.LEFT
 
 
+func can_collect_carrot() -> bool:
+	return true
+
+
+func has_super_carrot_energy() -> bool:
+	return super_carrot_timer > 0.0
+
+
+func add_super_carrot_duration(value: float) -> void:
+	super_carrot_timer = max(super_carrot_timer, value)
+
+
 func _get_energy() -> int:
-	return energy
+	return max_energy if has_super_carrot_energy() else energy
 
 
 func _set_energy(val: int) -> void:
+	if has_super_carrot_energy():
+		return
+
 	var old_energy = energy
 	energy = clamp(val, 0, max_energy)
 	LevelSignals.notify_energy_changed(self, old_energy, energy)
@@ -77,6 +95,11 @@ func _ready():
 
 
 func _physics_process(delta):
+	if super_carrot_timer > 0.0:
+		var old_energy = energy
+		super_carrot_timer -= delta
+		LevelSignals.notify_energy_changed(self, old_energy, energy)
+
 	if want_action:
 		if can_dig:
 			dig()
@@ -124,12 +147,3 @@ func _on_body_exited(body) -> void:
 	elif body is Cable:
 		if _can_chew == body:
 			_can_chew = null
-
-
-func collect_carrot(other) -> bool:
-	var old_energy = energy
-	if old_energy >= max_energy:
-		return false
-
-	_set_energy(old_energy + 1)
-	return true

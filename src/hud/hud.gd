@@ -14,7 +14,6 @@ func _ready():
 # An action is available at a specific position
 func _on_action_available(player, target: Entity) -> void:
 	_action_input.visible = true
-	_action_input
 
 
 # The action is no longer available

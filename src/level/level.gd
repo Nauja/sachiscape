@@ -97,7 +97,7 @@ func _on_carrot_collected(player, carrot: Carrot):
 
 
 func _on_energy_changed(player, old_value: int, new_value: int):
-	print("player ", player, " energy changed ", old_value, " -> ", new_value)
+	pass
 
 
 func _on_goal_reached(player, goal: Goal):

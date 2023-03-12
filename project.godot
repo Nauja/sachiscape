@@ -26,6 +26,7 @@ SaveManager="*res://src/autoload/save_manager.gd"
 ActorSheet="*res://src/autoload/actor_sheet.gd"
 PlayerSheet="*res://src/autoload/player_sheet.gd"
 Enums="*res://src/autoload/enums.gd"
+CarrotSheet="*res://src/autoload/carrot_sheet.gd"
 
 [display]
 

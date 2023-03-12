@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cdppjh4fyvkim"]
+
+[ext_resource type="Script" path="res://src/autoload/carrot_sheet.gd" id="1_f6p6g"]
+
+[resource]
+script = ExtResource("1_f6p6g")
+is_super_carrot = true
+energy = 0
+super_carrot_duration = 10.0

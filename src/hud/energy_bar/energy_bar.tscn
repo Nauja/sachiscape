@@ -1,39 +1,41 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://dds2xp5bmgige"]
 
-[ext_resource path="res://src/hud/energy_bar/energy_bar.gd" type="Script" id=1]
-[ext_resource path="res://src/hud/hud.png" type="Texture2D" id=2]
+[ext_resource type="Script" path="res://src/hud/energy_bar/energy_bar.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://dhkdkfw01gusr" path="res://src/hud/hud.png" id="2"]
 
 [node name="EnergyBar" type="Sprite2D"]
-texture = ExtResource( 2 )
+texture = ExtResource("2")
 region_enabled = true
-region_rect = Rect2( 0, 16, 48, 16 )
-script = ExtResource( 1 )
-_fills_paths = [ NodePath("Fill1"), NodePath("Segment2/Fill2"), NodePath("Segment2/Segment3/Fill3") ]
+region_rect = Rect2(0, 16, 48, 16)
+script = ExtResource("1")
+_fills_paths = Array[NodePath]([NodePath("Fill1"), NodePath("Segment2/Fill2"), NodePath("Segment2/Segment3/Fill3")])
+_region_normal = Rect2(32, 32, 32, 16)
+_region_super_carrot = Rect2(0, 32, 32, 16)
 
 [node name="Segment2" type="Sprite2D" parent="."]
-position = Vector2( 32, 0 )
-texture = ExtResource( 2 )
+position = Vector2(32, 0)
+texture = ExtResource("2")
 region_enabled = true
-region_rect = Rect2( 0, 0, 48, 16 )
+region_rect = Rect2(0, 0, 48, 16)
 
 [node name="Segment3" type="Sprite2D" parent="Segment2"]
-position = Vector2( 24, 0 )
-texture = ExtResource( 2 )
+position = Vector2(24, 0)
+texture = ExtResource("2")
 region_enabled = true
-region_rect = Rect2( 0, 0, 48, 16 )
+region_rect = Rect2(0, 0, 48, 16)
 
 [node name="Fill3" type="Sprite2D" parent="Segment2/Segment3"]
-texture = ExtResource( 2 )
+texture = ExtResource("2")
 region_enabled = true
-region_rect = Rect2( 0, 32, 32, 16 )
+region_rect = Rect2(0, 32, 32, 16)
 
 [node name="Fill2" type="Sprite2D" parent="Segment2"]
-texture = ExtResource( 2 )
+texture = ExtResource("2")
 region_enabled = true
-region_rect = Rect2( 0, 32, 32, 16 )
+region_rect = Rect2(0, 32, 32, 16)
 
 [node name="Fill1" type="Sprite2D" parent="."]
-position = Vector2( 8, 0 )
-texture = ExtResource( 2 )
+position = Vector2(8, 0)
+texture = ExtResource("2")
 region_enabled = true
-region_rect = Rect2( 0, 32, 32, 16 )
+region_rect = Rect2(0, 32, 32, 16)
