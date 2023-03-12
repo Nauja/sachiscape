@@ -6,7 +6,7 @@ var _current_action: EntityAction
 
 
 func _process(delta):
-	if _current_action.is_done():
+	if _current_action and _current_action.is_done():
 		_current_action = null
 
 

@@ -25,6 +25,7 @@ GameSignals="*res://src/autoload/game_signals.gd"
 SaveManager="*res://src/autoload/save_manager.gd"
 ActorSheet="*res://src/autoload/actor_sheet.gd"
 PlayerSheet="*res://src/autoload/player_sheet.gd"
+Enums="*res://src/autoload/enums.gd"
 
 [display]
 
@@ -109,13 +110,12 @@ action={
 2d_render/layer_1="game"
 2d_render/layer_2="hud"
 2d_physics/layer_1="player"
-2d_physics/layer_2="carrot"
+2d_physics/layer_2="special"
 2d_physics/layer_3="goal"
 2d_physics/layer_4="wall"
 2d_physics/layer_5="vision"
 2d_physics/layer_6="vent"
 2d_physics/layer_7="spike"
-2d_physics/layer_8="special"
 2d_physics/layer_9="dirt"
 2d_physics/layer_10="digger"
 2d_physics/layer_11="dirt_exit"

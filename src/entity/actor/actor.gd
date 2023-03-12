@@ -84,6 +84,18 @@ var digger: Digger:
 	get:
 		return digger
 
+var direction: Enums.EDirection:
+	get = _get_direction,
+	set = _set_direction
+
+
+func _get_direction() -> Enums.EDirection:
+	return direction
+
+
+func _set_direction(value: Enums.EDirection) -> void:
+	direction = value
+
 
 func _ready():
 	if actor_sheet.digger_sheet:

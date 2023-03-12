@@ -10,6 +10,14 @@ var max_energy: int:
 	get:
 		return player_sheet.max_energy
 
+var dig_energy_cost: int:
+	get:
+		return player_sheet.dig_energy_cost
+
+var chew_energy_cost: int:
+	get:
+		return player_sheet.chew_energy_cost
+
 # Current energy level
 var energy: int:
 	get = _get_energy,
@@ -19,12 +27,29 @@ var energy: int:
 var _can_dig: bool
 var can_dig: bool:
 	get:
-		return _current_action == _move_action and _can_dig and energy > 0
+		return _current_action == _move_action and _can_dig and energy >= dig_energy_cost
 
-@onready var _interaction_area = %InteractionArea
-@onready var _move_action = %MoveAction
-@onready var _enter_dig_action = %EnterDigAction
-@onready var _dig_action = %DigAction
+# Chewable entity near the player
+var _can_chew: Cable
+var can_chew: bool:
+	get:
+		return (
+			_current_action == _move_action
+			and _can_chew
+			and not _can_chew.is_cut()
+			and energy >= chew_energy_cost
+		)
+
+@onready var _sprite: Sprite2D = %Sprite2D
+@onready var _interaction_area: Area2D = %InteractionArea
+@onready var _move_action: ActorAction = %MoveAction
+@onready var _enter_dig_action: ActorAction = %EnterDigAction
+@onready var _dig_action: ActorAction = %DigAction
+
+
+func _set_direction(value: Enums.EDirection) -> void:
+	super(value)
+	_sprite.flip_h = value == Enums.EDirection.LEFT
 
 
 func _get_energy() -> int:
@@ -40,6 +65,7 @@ func _set_energy(val: int) -> void:
 func _ready():
 	actor_sheet = GameSignals.get_game_sheet().player_sheet
 	assert(actor_sheet)
+	assert(_sprite)
 	assert(_interaction_area)
 	assert(_move_action)
 	super()
@@ -54,6 +80,8 @@ func _physics_process(delta):
 	if want_action:
 		if can_dig:
 			dig()
+		elif can_chew:
+			chew()
 
 
 # Find the nearest diggable tile around player
@@ -63,10 +91,16 @@ func find_diggable_tile() -> Vector2i:
 
 func dig() -> void:
 	var diggable_tile = find_diggable_tile()
-	energy -= 1
+	energy -= dig_energy_cost
 	want_action = false
 	_enter_dig_action.target = diggable_tile
 	push_action(_enter_dig_action)
+
+
+func chew() -> void:
+	energy -= chew_energy_cost
+	want_action = false
+	_can_chew.cut()
 
 
 func _on_body_entered(body) -> void:
@@ -77,6 +111,8 @@ func _on_body_entered(body) -> void:
 		body.on_body_entered(self)
 	elif body is DirtTileMap:
 		_can_dig = true
+	elif body is Cable:
+		_can_chew = body
 
 
 func _on_body_exited(body) -> void:
@@ -85,6 +121,9 @@ func _on_body_exited(body) -> void:
 		body.on_body_exited(self)
 	elif body is DirtTileMap:
 		_can_dig = false
+	elif body is Cable:
+		if _can_chew == body:
+			_can_chew = null
 
 
 func collect_carrot(other) -> bool:

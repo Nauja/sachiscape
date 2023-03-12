@@ -7,6 +7,8 @@
 [resource]
 script = ExtResource("1_f3vui")
 max_energy = 3
+dig_energy_cost = 1
+chew_energy_cost = 0
 scene = ExtResource("2_e41sh")
 speed = 120
 jump_speed = -180

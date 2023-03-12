@@ -19,6 +19,7 @@ func get_input():
 		actor.velocity.x = lerp(
 			actor.velocity.x, float(dir * actor.speed), float(actor.acceleration)
 		)
+		actor.direction = Enums.EDirection.RIGHT if dir > 0 else Enums.EDirection.LEFT
 	else:
 		actor.velocity.x = lerp(actor.velocity.x, float(0), actor.friction)
 
