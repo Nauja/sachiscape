@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://if8ijxe6ms5t"]
+
+[ext_resource type="PackedScene" uid="uid://dvq7cie7efy3e" path="res://src/entity/carrot/carrot.tscn" id="1_ml3wq"]
+[ext_resource type="Resource" uid="uid://dbn5ipohvfhwb" path="res://src/entity/carrot/invisibility_carrot_data.tres" id="2_8dkm7"]
+
+[node name="InvisibilityCarrot" type="Node2D"]
+
+[node name="Carrot" parent="." instance=ExtResource("1_ml3wq")]
+_carrot_sheet = ExtResource("2_8dkm7")
+_frame_coords = Vector2i(2, 0)

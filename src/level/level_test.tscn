@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c1lw4qnq1iqgq"]
+[gd_scene load_steps=15 format=3 uid="uid://c1lw4qnq1iqgq"]
 
 [ext_resource type="PackedScene" uid="uid://cfynpc4b03264" path="res://src/level/tilemap/level_tilemap.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://src/entity/player_start.tscn" id="2"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://src/entity/cable/deactivate_camera_trigger.gd" id="11_0wn1d"]
 [ext_resource type="Script" path="res://src/entity/cable/activate_camera_trigger.gd" id="12_iui0e"]
 [ext_resource type="PackedScene" uid="uid://ps1mh6e0jwki" path="res://src/entity/carrot/super_carrot.tscn" id="13_3bbe5"]
+[ext_resource type="PackedScene" uid="uid://if8ijxe6ms5t" path="res://src/entity/carrot/invisibility_carrot.tscn" id="14_bkpab"]
 
 [node name="LevelTest" type="Node2D"]
 
@@ -74,3 +75,6 @@ _camera_path = NodePath("../../Camera")
 
 [node name="SuperCarrot" parent="." instance=ExtResource("13_3bbe5")]
 position = Vector2(152, 80)
+
+[node name="InvisibilityCarrot" parent="." instance=ExtResource("14_bkpab")]
+position = Vector2(312, 152)

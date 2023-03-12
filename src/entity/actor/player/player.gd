@@ -6,6 +6,14 @@ var player_sheet: PlayerSheet:
 	get:
 		return actor_sheet
 
+var texture: Texture2D:
+	get:
+		return player_sheet.texture
+
+var invisible_texture: Texture2D:
+	get:
+		return player_sheet.invisible_texture
+
 var max_energy: int:
 	get:
 		return player_sheet.max_energy
@@ -25,6 +33,9 @@ var energy: int:
 
 # Remaining duration of the super carrot effect
 var super_carrot_timer: float
+# Remaining duration of the invisibility effect
+var invisibility_timer: float
+var _was_invisible: bool
 
 # If on a diggable surface
 var _can_dig: bool
@@ -59,12 +70,22 @@ func can_collect_carrot() -> bool:
 	return true
 
 
+# If the player has the super carrot effect
 func has_super_carrot_energy() -> bool:
 	return super_carrot_timer > 0.0
 
 
+# If the player is invisible
+func has_invisibility() -> bool:
+	return invisibility_timer > 0.0
+
+
 func add_super_carrot_duration(value: float) -> void:
 	super_carrot_timer = max(super_carrot_timer, value)
+
+
+func add_invisibility_duration(value: float) -> void:
+	invisibility_timer = max(invisibility_timer, value)
 
 
 func _get_energy() -> int:
@@ -91,6 +112,7 @@ func _ready():
 	_interaction_area.connect("body_entered", _on_body_entered)
 	_interaction_area.connect("body_exited", _on_body_exited)
 	_set_energy(1)
+	_sprite.texture = texture
 	push_action(_move_action)
 
 
@@ -99,6 +121,15 @@ func _physics_process(delta):
 		var old_energy = energy
 		super_carrot_timer -= delta
 		LevelSignals.notify_energy_changed(self, old_energy, energy)
+
+	if invisibility_timer > 0.0:
+		invisibility_timer -= delta
+		if not _was_invisible:
+			_sprite.texture = invisible_texture
+			_was_invisible = true
+	elif _was_invisible:
+		_sprite.texture = texture
+		_was_invisible = false
 
 	if want_action:
 		if can_dig:

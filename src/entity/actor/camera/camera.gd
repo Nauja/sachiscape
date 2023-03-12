@@ -20,7 +20,7 @@ extends Actor
 				_cone.hide()
 			_timer = 0.0
 
-var _is_player_inside: bool
+var _player
 var _timer: float
 
 
@@ -31,20 +31,23 @@ func _ready():
 	is_on = is_on
 
 
-func _process(deltaTime: float):
-	if is_on and _is_player_inside:
-		_timer += deltaTime
-		if _timer > 1.0:
-			LevelSignals.notify_player_detected(null, self)
+func _process(delta):
+	if is_on and _player:
+		if _player.has_invisibility():
+			_timer = 0.0
+		else:
+			_timer += delta
+			if _timer > 1.0:
+				LevelSignals.notify_player_detected(null, self)
 
 
 func _on_body_entered(body):
-	_is_player_inside = true
+	_player = body
 	_timer = 0.0
 
 
 func _on_body_exited(body):
-	_is_player_inside = false
+	_player = null
 
 
 func turn_on() -> void:
