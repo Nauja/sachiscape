@@ -27,6 +27,11 @@ ActorSheet="*res://src/autoload/actor_sheet.gd"
 PlayerSheet="*res://src/autoload/player_sheet.gd"
 Enums="*res://src/autoload/enums.gd"
 CarrotSheet="*res://src/autoload/carrot_sheet.gd"
+PowerSheet="*res://src/autoload/power_sheet.gd"
+PlayerSignals="*res://src/autoload/player_signals.gd"
+StickyPowerSheet="*res://src/autoload/sticky_power_sheet.gd"
+DigPowerSheet="*res://src/autoload/dig_power_sheet.gd"
+InvisiblePowerSheet="*res://src/autoload/invisible_power_sheet.gd"
 
 [display]
 

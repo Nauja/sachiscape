@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_oxq86")
-is_super_carrot = false
-energy = 1
+energy = 25
+super_carrot_duration = 0.0

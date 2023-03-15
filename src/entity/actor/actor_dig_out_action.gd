@@ -1,5 +1,5 @@
 # Exit dig action generic to all actors
-class_name ActorExitDigAction
+class_name ActorDigOutAction
 extends ActorAction
 
 @export var _move_action_node: NodePath
@@ -12,7 +12,7 @@ var target: Vector2
 func _do_start():
 	super()
 	assert(actor.digger)
-	actor.animation_player.play("exit_dig")
+	actor.animation_player.play("dig_out")
 
 
 func _physics_process(delta):

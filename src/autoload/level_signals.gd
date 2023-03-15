@@ -1,7 +1,7 @@
 extends Node2D
 
-# Return the player energy
-var _get_energy: Callable
+# Return the sheet of current level
+var _get_level_sheet: Callable
 
 # Return the nearest diggable tile around a position or null
 var _find_diggable_tile: Callable
@@ -11,9 +11,6 @@ var _find_exit_dirt_tile: Callable
 
 # A carrot has been collected by the player
 signal carrot_collected(player, carrot)
-
-# Player energy changed
-signal energy_changed(player, old_value, new_value)
 
 # Player reached the goal
 signal goal_reached(player, goal)
@@ -37,8 +34,8 @@ signal action_available(player, target)
 signal action_unavailable(player, target)
 
 
-func get_energy() -> int:
-	return _get_energy.call() if _get_energy else 0
+func get_level_sheet() -> LevelSheet:
+	return _get_level_sheet.call() if _get_level_sheet else null
 
 
 func find_diggable_tile(pos: Vector2):
@@ -51,10 +48,6 @@ func find_exit_dirt_tile(pos: Vector2):
 
 func notify_carrot_collected(player, carrot):
 	emit_signal("carrot_collected", player, carrot)
-
-
-func notify_energy_changed(player, old_value, new_value):
-	emit_signal("energy_changed", player, old_value, new_value)
 
 
 func notify_goal_reached(player, goal):

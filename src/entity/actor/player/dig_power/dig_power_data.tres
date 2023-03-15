@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://hbqo6v0vjjgu"]
+
+[ext_resource type="Texture2D" uid="uid://gu1p5wa0ud8p" path="res://src/entity/actor/player/dig_power/dig_energy_bar_atlas.tres" id="1_7ete8"]
+[ext_resource type="Script" path="res://src/autoload/dig_power_sheet.gd" id="2_6yf84"]
+[ext_resource type="Texture2D" path="res://src/entity/actor/player/dig_power/dig_player_atlas.tres" id="2_v3ani"]
+
+[resource]
+script = ExtResource("2_6yf84")
+energy_cost = 25
+player_texture = ExtResource("2_v3ani")
+energy_bar_texture = ExtResource("1_7ete8")

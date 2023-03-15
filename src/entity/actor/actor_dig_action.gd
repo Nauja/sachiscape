@@ -2,9 +2,6 @@
 class_name ActorDigAction
 extends ActorAction
 
-@export var _exit_dig_action_node: NodePath
-@onready var _exit_dig_action: EntityAction = get_node(_exit_dig_action_node)
-
 # Target tile
 var target: Vector2
 
@@ -51,8 +48,4 @@ func _physics_process(delta):
 	digger.owner_actor.position = digger.position
 
 	if digger.owner_actor.want_action and digger.can_dig_out:
-		var nearest_tile = LevelSignals.find_exit_dirt_tile(digger.global_position)
-		if nearest_tile:
-			digger.owner_actor.want_action = false
-			_exit_dig_action.target = nearest_tile
-			digger.owner_actor.push_action(_exit_dig_action)
+		digger.owner_actor.dig_out()

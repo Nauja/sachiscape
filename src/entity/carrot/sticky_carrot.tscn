@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdhvek8g7nhdp"]
+
+[ext_resource type="PackedScene" uid="uid://dvq7cie7efy3e" path="res://src/entity/carrot/carrot.tscn" id="1_crx6r"]
+[ext_resource type="Resource" uid="uid://cil3mfnfcvavs" path="res://src/entity/carrot/sticky_carrot_data.tres" id="2_gyqq1"]
+
+[node name="StickyCarrot" type="Node2D"]
+
+[node name="Carrot" parent="." instance=ExtResource("1_crx6r")]
+_carrot_sheet = ExtResource("2_gyqq1")
+_frame_coords = Vector2i(4, 0)

@@ -1,18 +1,18 @@
 [gd_resource type="Resource" load_steps=9 format=3 uid="uid://dad548h35wkwg"]
 
 [ext_resource type="Script" path="res://src/autoload/game_sheet.gd" id="1"]
-[ext_resource type="Resource" path="res://src/level/level_2_data.tres" id="2"]
-[ext_resource type="Resource" path="res://src/level/level_test_data.tres" id="3"]
-[ext_resource type="Resource" path="res://src/level/level_1_data.tres" id="4"]
+[ext_resource type="Resource" uid="uid://c4ef52gu8v541" path="res://src/level/level_2_data.tres" id="2"]
+[ext_resource type="Resource" uid="uid://ffqkdc7sxvyv" path="res://src/level/level_test_data.tres" id="3"]
+[ext_resource type="Resource" uid="uid://cokjaf3hnokrq" path="res://src/level/level_1_data.tres" id="4"]
+[ext_resource type="Resource" uid="uid://chg1ljr4sli57" path="res://src/entity/actor/player/player_data.tres" id="4_ywaxh"]
 [ext_resource type="PackedScene" uid="uid://bgalkt13urmsc" path="res://src/menu/home/home.tscn" id="5"]
-[ext_resource type="Resource" path="res://src/level/level_0_data.tres" id="6"]
-[ext_resource type="Resource" uid="uid://chg1ljr4sli57" path="res://src/entity/actor/player/player_data.tres" id="6_21grc"]
+[ext_resource type="Resource" uid="uid://duaycggmd3i2c" path="res://src/level/level_0_data.tres" id="6"]
 [ext_resource type="PackedScene" uid="uid://txe1v6itfm01" path="res://src/level/level.tscn" id="7"]
 
 [resource]
 script = ExtResource("1")
 home_scene = ExtResource("5")
 level_scene = ExtResource("7")
-levels = Array[Resource]([ExtResource("6"), ExtResource("4"), ExtResource("2")])
-test_level = ExtResource("3")
-player_sheet = ExtResource("6_21grc")
+_levels = Array[Resource]([ExtResource("6"), ExtResource("4"), ExtResource("2")])
+_test_level = ExtResource("3")
+_player_sheet = ExtResource("4_ywaxh")

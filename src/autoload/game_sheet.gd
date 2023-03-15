@@ -7,8 +7,20 @@ extends Resource
 # RefCounted to the generic level scene
 @export var level_scene: PackedScene
 # List of levels
-@export var levels: Array[Resource]
+@export var _levels: Array[Resource]
+var levels: Array[LevelSheet]:
+	get:
+		var l: Array[LevelSheet] = []
+		for level in _levels:
+			l.append(level)
+		return l
 # The test level
-@export var test_level: Resource
+@export var _test_level: Resource
+var test_level: LevelSheet:
+	get:
+		return _test_level
 # The player configuration
-@export var player_sheet: Resource
+@export var _player_sheet: Resource
+var player_sheet: PlayerSheet:
+	get:
+		return _player_sheet

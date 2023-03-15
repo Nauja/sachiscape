@@ -1,18 +1,12 @@
-[gd_resource type="Resource" load_steps=6 format=3 uid="uid://chg1ljr4sli57"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://chg1ljr4sli57"]
 
 [ext_resource type="Resource" uid="uid://bof57ei486wep" path="res://src/entity/actor/player/player_digger_data.tres" id="1_1wwo3"]
 [ext_resource type="Script" path="res://src/autoload/player_sheet.gd" id="1_f3vui"]
-[ext_resource type="Texture2D" uid="uid://68g6jvme711j" path="res://src/entity/actor/player/player_invisible.png" id="2_3e7c1"]
-[ext_resource type="PackedScene" uid="uid://bq0axsufmsry1" path="res://src/entity/actor/player/player.tscn" id="2_e41sh"]
-[ext_resource type="Texture2D" uid="uid://cmhtpg41826su" path="res://src/entity/actor/player/player.png" id="5_g44ar"]
+[ext_resource type="PackedScene" uid="uid://bdm3auvyfmh70" path="res://src/entity/actor/player/player.tscn" id="2_e41sh"]
 
 [resource]
 script = ExtResource("1_f3vui")
-texture = ExtResource("5_g44ar")
-invisible_texture = ExtResource("2_3e7c1")
-max_energy = 3
-dig_energy_cost = 1
-chew_energy_cost = 0
+max_energy = 100
 scene = ExtResource("2_e41sh")
 speed = 120
 jump_speed = -180

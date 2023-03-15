@@ -1,9 +1,11 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://cokjaf3hnokrq"]
 
-[ext_resource path="res://src/level/level_1.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/autoload/level_sheet.gd" type="Script" id=2]
+[ext_resource type="PackedScene" uid="uid://duo01nsyr6rsu" path="res://src/level/level_1.tscn" id="1"]
+[ext_resource type="Resource" uid="uid://cda4j42vph3cd" path="res://src/entity/actor/player/invisible_power/invisible_power_data.tres" id="1_1oiyi"]
+[ext_resource type="Script" path="res://src/autoload/level_sheet.gd" id="2"]
 
 [resource]
-script = ExtResource( 2 )
-scene = ExtResource( 1 )
+script = ExtResource("2")
+scene = ExtResource("1")
 energy = 1
+_power = ExtResource("1_1oiyi")

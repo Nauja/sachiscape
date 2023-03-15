@@ -11,11 +11,17 @@ extends SubViewportContainer
 var _current_scene
 # Index of the current level
 var _level_index: int
+# Sheet of the current level
+var _level_sheet: LevelSheet
 var _game_state: SaveManager.GameState
 
 
 func _get_game_sheet() -> GameSheet:
 	return _game_sheet
+
+
+func _get_level_sheet() -> LevelSheet:
+	return _level_sheet
 
 
 func _is_level_unlocked(index: int) -> bool:
@@ -28,6 +34,7 @@ func _ready():
 	GameSignals.connect("level_selected", _on_level_selected)
 	GameSignals.connect("test_level_selected", _on_test_level_selected)
 	GameSignals.connect("reset_save", _on_reset_save)
+	LevelSignals._get_level_sheet = _get_level_sheet
 	LevelSignals.connect("reset_pressed", _on_reset_pressed)
 	LevelSignals.connect("back_to_main_menu_pressed", _on_back_to_main_menu_pressed)
 	LevelSignals.connect("goal_reached", _on_goal_reached)
@@ -48,7 +55,7 @@ func _load_home() -> Node:
 	return instance
 
 
-# Load a level from a PackedScene
+# Load a level from PackedScene
 func _load_level_scene(scene: PackedScene) -> Node:
 	# Load the generic scene
 	assert(_game_sheet.level_scene)
@@ -69,9 +76,10 @@ func _load_level(index: int) -> Node:
 	assert(index >= 0 and index < len(_game_sheet.levels))
 	assert(_game_sheet.levels[index].scene)
 	index = clamp(index, 0, len(_game_sheet.levels) - 1)
-	var instance = _load_level_scene(_game_sheet.levels[index].scene)
+	_level_index = index
+	_level_sheet = _game_sheet.levels[index]
+	var instance = _load_level_scene(_level_sheet.scene)
 	if instance:
-		_level_index = index
 		_current_scene = instance
 	return instance
 
@@ -90,9 +98,10 @@ func _load_next_level() -> Node:
 
 
 func _load_test_level() -> Node:
+	_level_index = -1
+	_level_sheet = _game_sheet.test_level
 	var instance = _load_level_scene(_game_sheet.test_level.scene)
 	if instance:
-		_level_index = -1
 		_current_scene = instance
 	return instance
 

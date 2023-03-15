@@ -41,15 +41,15 @@ func _ready():
 	_camera.limit_bottom = bounds.size.y * _level_tilemap.cell_quadrant_size
 
 
-func find_diggable_tile(pos: Vector2) -> Vector2:
+func find_diggable_tile(pos: Vector2):  # -> Vector2:
 	return find_nearest_tile(pos, _dirt_tilemap)
 
 
-func find_exit_dirt_tile(pos: Vector2) -> Vector2:
+func find_exit_dirt_tile(pos: Vector2):  # -> Vector2:
 	return find_nearest_tile(pos, _exit_dirt_tilemap)
 
 
-func find_nearest_tile(pos: Vector2, tilemap: TileMap) -> Vector2:
+func find_nearest_tile(pos: Vector2, tilemap: TileMap):  # -> Vector2:
 	var cell_size = tilemap.cell_quadrant_size
 	var rel_pos = pos - tilemap.global_position
 	var player_pos = Vector2i(int(rel_pos.x / cell_size), int(rel_pos.y / cell_size))

@@ -3,6 +3,9 @@ extends CharacterBody2D
 
 # Action currently playing
 var _current_action: EntityAction
+var current_action: EntityAction:
+	get:
+		return _current_action
 
 
 func _process(delta):

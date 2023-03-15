@@ -1,11 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bq0axsufmsry1"]
+[gd_scene load_steps=13 format=3 uid="uid://bdm3auvyfmh70"]
 
 [ext_resource type="Script" path="res://src/entity/actor/player/player.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://cmhtpg41826su" path="res://src/entity/actor/player/player.png" id="2"]
+[ext_resource type="Texture2D" path="res://src/entity/actor/player/normal_power/normal_player_atlas.tres" id="2_b5hgr"]
 [ext_resource type="Script" path="res://src/entity/actor/actor_move_action.gd" id="3_mjdxk"]
 [ext_resource type="Script" path="res://src/entity/actor/actor_dig_action.gd" id="4_kkhyi"]
-[ext_resource type="Script" path="res://src/entity/actor/actor_enter_dig_action.gd" id="4_ommdu"]
-[ext_resource type="Script" path="res://src/entity/actor/actor_exit_dig_action.gd" id="6_l01o7"]
+[ext_resource type="Script" path="res://src/entity/actor/actor_dig_in_action.gd" id="4_ptjsi"]
+[ext_resource type="Script" path="res://src/entity/actor/actor_dig_out_action.gd" id="6_babym"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7h6le"]
 radius = 9.0
@@ -117,29 +117,27 @@ libraries = {
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(-2, -1)
-texture = ExtResource("2")
+texture = ExtResource("2_b5hgr")
 hframes = 4
-vframes = 4
 
 [node name="MoveAction" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_mjdxk")
 _entity_path = NodePath("..")
 
-[node name="EnterDigAction" type="Node2D" parent="."]
+[node name="DigInAction" type="Node2D" parent="."]
 unique_name_in_owner = true
-script = ExtResource("4_ommdu")
+script = ExtResource("4_ptjsi")
 _dig_action_node = NodePath("../DigAction")
 _entity_path = NodePath("..")
 
 [node name="DigAction" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("4_kkhyi")
-_exit_dig_action_node = NodePath("../ExitDigAction")
 _entity_path = NodePath("..")
 
-[node name="ExitDigAction" type="Node2D" parent="."]
+[node name="DigOutAction" type="Node2D" parent="."]
 unique_name_in_owner = true
-script = ExtResource("6_l01o7")
+script = ExtResource("6_babym")
 _move_action_node = NodePath("../MoveAction")
 _entity_path = NodePath("..")
