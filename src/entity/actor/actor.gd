@@ -36,6 +36,10 @@ var jump_input_delay: float:
 	get:
 		return actor_sheet.jump_input_delay
 
+var drop_input_delay: float:
+	get:
+		return actor_sheet.drop_input_delay
+
 var action_input_delay: float:
 	get:
 		return actor_sheet.action_input_delay
@@ -61,6 +65,17 @@ var want_jump:
 var is_jump_pressed: bool
 # Is the actor currently jumping
 var is_jumping: bool
+# Does the actor want to drop, including a slight delay
+var _want_drop_timer: float
+var want_drop:
+	get:
+		return _want_drop_timer > 0.0
+	set(value):
+		_want_drop_timer = drop_input_delay if value else 0.0
+# Is the drop input pressed this frame
+var is_drop_pressed: bool
+# Is the actor currently droping
+var is_droping: bool
 # Is the actor on ground, including a slight delay
 var is_on_ground_timer: float
 var is_on_ground: bool:
@@ -119,5 +134,17 @@ func can_move() -> bool:
 func _process(delta):
 	if _want_jump_timer > 0.0:
 		_want_jump_timer -= delta
+	if _want_drop_timer > 0.0:
+		_want_drop_timer -= delta
 	if _want_action_timer > 0.0:
 		_want_action_timer -= delta
+
+
+func fall_through():
+	if get_collision_mask_value(8):
+		set_collision_mask_value(8, false)
+
+
+func cancel_fall_through():
+	if not get_collision_mask_value(8):
+		set_collision_mask_value(8, true)

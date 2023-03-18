@@ -14,6 +14,7 @@ extends Resource
 
 # Input
 @export var jump_input_delay: float = 0.1
+@export var drop_input_delay: float = 0.1
 @export var action_input_delay: float = 0.1
 
 # Scene to spawn when digging

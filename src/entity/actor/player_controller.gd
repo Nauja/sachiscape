@@ -12,6 +12,7 @@ var id: int:
 
 var was_reset_pressed: bool
 var _was_jump_pressed: bool
+var _was_drop_pressed: bool
 var _was_action_pressed: bool
 
 
@@ -32,6 +33,7 @@ func _process(delta):
 		actor.input.x = 0
 		actor.input.y = 0
 		actor.want_jump_timer = 0.0
+		actor.want_drop_timer = 0.0
 		return
 
 	if input_device.is_action_pressed("move_right"):
@@ -56,6 +58,15 @@ func _process(delta):
 	else:
 		actor.is_jump_pressed = false
 		_was_jump_pressed = false
+
+	if input_device.is_action_pressed("drop"):
+		actor.is_drop_pressed = true
+		if not _was_drop_pressed:
+			actor.want_drop = true
+			_was_drop_pressed = true
+	else:
+		actor.is_drop_pressed = false
+		_was_drop_pressed = false
 
 	if input_device.is_action_pressed("action"):
 		actor.is_action_pressed = true

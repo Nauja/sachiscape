@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://bof57ei486wep" path="res://src/entity/actor/player/player_digger_data.tres" id="1_1wwo3"]
 [ext_resource type="Script" path="res://src/autoload/player_sheet.gd" id="1_f3vui"]
-[ext_resource type="PackedScene" uid="uid://bdm3auvyfmh70" path="res://src/entity/actor/player/player.tscn" id="2_e41sh"]
+[ext_resource type="PackedScene" uid="uid://djf0hv64lp6i3" path="res://src/entity/actor/player/player.tscn" id="2_e41sh"]
 
 [resource]
 script = ExtResource("1_f3vui")
@@ -15,5 +15,6 @@ gravity_multiplier_falling = 2.0
 friction = 0.1
 acceleration = 0.25
 jump_input_delay = 0.1
+drop_input_delay = 0.1
 action_input_delay = 0.1
 _digger_sheet = ExtResource("1_1wwo3")

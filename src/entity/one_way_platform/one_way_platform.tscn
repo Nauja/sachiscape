@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1du7bkym8fak"]
+
+[ext_resource type="Texture2D" uid="uid://di4x6ocnkeivb" path="res://src/entity/one_way_platform/one_way_platform_atlas.tres" id="1_7o0ki"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2xsa"]
+size = Vector2(16, 8)
+
+[node name="OneWayPlatform" type="CharacterBody2D"]
+collision_layer = 128
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7o0ki")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_d2xsa")
+one_way_collision = true

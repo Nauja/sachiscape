@@ -34,14 +34,24 @@ func _physics_process(delta):
 	actor.move_and_slide()
 
 	if actor.is_on_floor():
+		# Landed on floor
 		actor.is_on_ground = true
-
-	if actor.is_jumping:
-		if actor.is_on_floor():
+		if actor.is_jumping:
+			# Stop jump
 			actor.is_jumping = false
 			actor.gravity_multiplier = 1
-		elif not actor.is_jump_pressed or actor.velocity.y >= 0:
+
+	if actor.is_jumping:
+		if not actor.is_jump_pressed or actor.velocity.y >= 0:
+			# Increase gravity when falling
 			actor.gravity_multiplier = actor.gravity_multiplier_falling
+
+	if actor.want_drop:
+		# Drop through platform
+		actor.fall_through()
+	else:
+		actor.cancel_fall_through()
+
 	if actor.want_jump:
 		jump()
 
