@@ -1,3 +1,3 @@
 extends Node
 
-enum EDirection { LEFT, RIGHT }
+enum EDirection { LEFT, RIGHT, UP, DOWN }
