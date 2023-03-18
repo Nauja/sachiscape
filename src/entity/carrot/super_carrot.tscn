@@ -7,4 +7,3 @@
 
 [node name="Carrot" parent="." instance=ExtResource("1_vrv6r")]
 _carrot_sheet = ExtResource("2_de0l6")
-_frame_coords = Vector2i(1, 0)

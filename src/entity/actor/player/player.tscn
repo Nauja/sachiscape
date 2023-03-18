@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bdm3auvyfmh70"]
+[gd_scene load_steps=15 format=3 uid="uid://djf0hv64lp6i3"]
 
 [ext_resource type="Script" path="res://src/entity/actor/player/player.gd" id="1"]
 [ext_resource type="Texture2D" path="res://src/entity/actor/player/normal_power/normal_player_atlas.tres" id="2_b5hgr"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://src/entity/actor/actor_dig_action.gd" id="4_kkhyi"]
 [ext_resource type="Script" path="res://src/entity/actor/actor_dig_in_action.gd" id="4_ptjsi"]
 [ext_resource type="Script" path="res://src/entity/actor/actor_dig_out_action.gd" id="6_babym"]
+[ext_resource type="Script" path="res://src/entity/actor/actor_grapple_in_action.gd" id="7_3y6q8"]
+[ext_resource type="PackedScene" uid="uid://cx2nbcen2nv30" path="res://src/entity/grapple/grapple.tscn" id="7_c7rdo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7h6le"]
 radius = 9.0
@@ -141,3 +143,13 @@ unique_name_in_owner = true
 script = ExtResource("6_babym")
 _move_action_node = NodePath("../MoveAction")
 _entity_path = NodePath("..")
+
+[node name="GrappleInAction" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("7_3y6q8")
+_grapple_path = NodePath("../Grapple")
+_entity_path = NodePath("..")
+
+[node name="Grapple" parent="." instance=ExtResource("7_c7rdo")]
+z_index = -1
+length = 2

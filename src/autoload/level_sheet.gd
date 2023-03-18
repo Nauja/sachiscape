@@ -9,3 +9,5 @@ extends Resource
 var power: PowerSheet:
 	get:
 		return _power
+# Power carrot always respawn in this level
+@export var power_carrot_respawn: bool

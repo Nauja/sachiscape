@@ -95,6 +95,12 @@ func _get_direction() -> Enums.EDirection:
 
 func _set_direction(value: Enums.EDirection) -> void:
 	direction = value
+	if value == Enums.EDirection.LEFT:
+		scale = Vector2(1.0, -1.0)
+		rotation_degrees = 180.0
+	elif value == Enums.EDirection.RIGHT:
+		scale = Vector2(1.0, 1.0)
+		rotation_degrees = 0.0
 
 
 func _ready():

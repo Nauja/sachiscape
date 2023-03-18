@@ -32,6 +32,8 @@ PlayerSignals="*res://src/autoload/player_signals.gd"
 StickyPowerSheet="*res://src/autoload/sticky_power_sheet.gd"
 DigPowerSheet="*res://src/autoload/dig_power_sheet.gd"
 InvisiblePowerSheet="*res://src/autoload/invisible_power_sheet.gd"
+BouncePowerSheet="*res://src/autoload/bounce_power_sheet.gd"
+GrapplePowerSheet="*res://src/autoload/grapple_power_sheet.gd"
 
 [display]
 
@@ -117,6 +119,7 @@ action={
 2d_render/layer_2="hud"
 2d_physics/layer_1="player"
 2d_physics/layer_2="interaction"
+2d_physics/layer_3="hook"
 2d_physics/layer_4="wall"
 2d_physics/layer_5="vision"
 2d_physics/layer_6="vent"

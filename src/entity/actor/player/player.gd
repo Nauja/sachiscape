@@ -50,11 +50,9 @@ var can_chew: bool:
 @onready var dig_out_action: ActorDigOutAction = %DigOutAction:
 	get:
 		return dig_out_action
-
-
-func _set_direction(value: Enums.EDirection) -> void:
-	super(value)
-	sprite.flip_h = value == Enums.EDirection.LEFT
+@onready var grapple_in_action: ActorGrappleInAction = %GrappleInAction:
+	get:
+		return grapple_in_action
 
 
 func can_collect_carrot() -> bool:
@@ -173,6 +171,13 @@ func dig_out() -> bool:
 func chew() -> void:
 	want_action = false
 	_can_chew.cut()
+
+
+func grapple(speed: int, max_length: int) -> void:
+	want_action = false
+	grapple_in_action.grapple_speed = speed
+	grapple_in_action.grapple_max_length = max_length
+	push_action(grapple_in_action)
 
 
 func _on_body_entered(body) -> void:

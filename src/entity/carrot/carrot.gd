@@ -6,8 +6,8 @@ extends Area2D
 # Carrot configuration
 @export var _carrot_sheet: Resource
 var carrot_sheet: CarrotSheet:
-	get:
-		return _carrot_sheet
+	get = _get_carrot_sheet,
+	set = _set_carrot_sheet
 
 var energy: int:
 	get:
@@ -21,18 +21,19 @@ var power: PowerSheet:
 	get:
 		return carrot_sheet.power
 
-# Frame coords for editor rendering only
-@export var _frame_coords: Vector2i:
-	get:
-		return _frame_coords
-	set(value):
-		_frame_coords = value
-		if _sprite:
-			_sprite.frame_coords = _frame_coords
-
 # Components
 @onready var _sprite: Sprite2D = %Sprite2D
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
+
+
+func _get_carrot_sheet() -> CarrotSheet:
+	return _carrot_sheet
+
+
+func _set_carrot_sheet(val: CarrotSheet) -> void:
+	_carrot_sheet = val
+	if _sprite:
+		_sprite.texture = val.texture
 
 
 # If the carrot is a super carrot
@@ -41,7 +42,7 @@ func is_super_carrot() -> bool:
 
 
 func _ready():
-	_frame_coords = _frame_coords
+	carrot_sheet = carrot_sheet
 	if Engine.is_editor_hint():
 		return
 
@@ -64,4 +65,7 @@ func _on_body_entered(body):
 
 	body.add_super_carrot_duration(super_carrot_duration)
 	LevelSignals.notify_carrot_collected(body, self)
-	queue_free()
+
+	var sheet = LevelSignals.get_level_sheet()
+	if not power or not sheet.power_carrot_respawn:
+		queue_free()

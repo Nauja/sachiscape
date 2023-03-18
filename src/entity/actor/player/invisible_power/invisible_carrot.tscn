@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnw8r7u1f26vt"]
+
+[ext_resource type="PackedScene" uid="uid://dvq7cie7efy3e" path="res://src/entity/carrot/carrot.tscn" id="1_ude2j"]
+[ext_resource type="Resource" uid="uid://dbn5ipohvfhwb" path="res://src/entity/actor/player/invisible_power/invisible_carrot_data.tres" id="2_o63d4"]
+
+[node name="InvisibleCarrot" type="Node2D"]
+
+[node name="Carrot" parent="." instance=ExtResource("1_ude2j")]
+_carrot_sheet = ExtResource("2_o63d4")

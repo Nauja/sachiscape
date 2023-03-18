@@ -9,3 +9,4 @@ script = ExtResource("2")
 scene = ExtResource("1")
 energy = 2
 _power = ExtResource("1_8tfeu")
+power_carrot_respawn = false

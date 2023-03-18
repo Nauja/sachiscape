@@ -1,9 +1,10 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cdppjh4fyvkim"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cdppjh4fyvkim"]
 
 [ext_resource type="Script" path="res://src/autoload/carrot_sheet.gd" id="1_f6p6g"]
+[ext_resource type="Texture2D" uid="uid://c3ekn4hewoxni" path="res://src/entity/carrot/super_carrot_atlas.tres" id="2_thld7"]
 
 [resource]
 script = ExtResource("1_f6p6g")
-is_super_carrot = true
+texture = ExtResource("2_thld7")
 energy = 0
 super_carrot_duration = 10.0

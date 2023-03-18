@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://ffqkdc7sxvyv"]
 
-[ext_resource type="PackedScene" uid="uid://cutfguvnbhe2" path="res://src/level/level_test.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://p0qm0wqefyae" path="res://src/level/level_test.tscn" id="1"]
 [ext_resource type="Resource" path="res://src/entity/actor/player/normal_power/normal_power_data.tres" id="1_8eb4d"]
 [ext_resource type="Script" path="res://src/autoload/level_sheet.gd" id="2"]
 
@@ -9,3 +9,4 @@ script = ExtResource("2")
 scene = ExtResource("1")
 energy = 75
 _power = ExtResource("1_8eb4d")
+power_carrot_respawn = true

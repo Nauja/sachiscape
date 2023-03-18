@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://bt3b3bi7r22jq"]
 
-[ext_resource path="res://src/editor/sprite/icon_start_flag.png" type="Texture2D" id=1]
-[ext_resource path="res://src/utility/delete_on_ready.gd" type="Script" id=2]
+[ext_resource type="Texture2D" uid="uid://c5b0mvog30vun" path="res://src/editor/sprite/icon_start_flag.png" id="1"]
+[ext_resource type="Script" path="res://src/utility/delete_on_ready.gd" id="2"]
 
 [node name="PlayerStart" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2( 0, -16 )
-texture = ExtResource( 1 )
-script = ExtResource( 2 )
+position = Vector2(0, -16)
+texture = ExtResource("1")
+script = ExtResource("2")
 _target_path = NodePath(".")
