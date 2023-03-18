@@ -2,6 +2,9 @@
 # Godot-specific ignores
 .import/
 export.cfg
+.godot/
+venv/
+.vscode/
 
 # Mono-specific ignores
 .mono/

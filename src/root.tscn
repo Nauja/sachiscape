@@ -1,9 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://djy2n4aw7rdhs"]
 
-[ext_resource path="res://src/root.gd" type="Script" id=1]
-[ext_resource path="res://src/game_data.tres" type="Resource" id=2]
+[ext_resource type="Script" path="res://src/root.gd" id="1"]
+[ext_resource type="Resource" uid="uid://dad548h35wkwg" path="res://src/game_data.tres" id="2"]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id="1"]
 script/source = "class_name GameInstance
 extends Node2D
 
@@ -11,21 +11,22 @@ func _ready():
 	pass
 "
 
-[node name="ViewportContainer" type="ViewportContainer"]
+[node name="SubViewportContainer" type="SubViewportContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
-_game_sheet = ExtResource( 2 )
+script = ExtResource("1")
+_game_sheet = ExtResource("2")
 root_node = NodePath("Control")
 
 [node name="Control" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.160784, 0.152941, 0.152941, 1 )
+color = Color(0.160784, 0.152941, 0.152941, 1)
 
 [node name="GameInstance" type="Node2D" parent="."]
-script = SubResource( 1 )
+script = SubResource("1")

@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://n68iixpjdeyk"]
+
+[ext_resource type="Texture2D" uid="uid://b5wpjg0n0pflo" path="res://src/entity/actor/player/normal_power/normal_energy_bar_atlas.tres" id="1_0045w"]
+
+[resource]
+atlas = ExtResource("1_0045w")
+region = Rect2(5, 16, 22, 16)

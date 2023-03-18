@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bof57ei486wep"]
+
+[ext_resource type="PackedScene" uid="uid://dtql5weigld56" path="res://src/entity/actor/digger/digger.tscn" id="1_ovj5u"]
+[ext_resource type="Script" path="res://src/autoload/actor_sheet.gd" id="2_n24tt"]
+
+[resource]
+script = ExtResource("2_n24tt")
+scene = ExtResource("1_ovj5u")
+speed = 60
+jump_speed = 0
+gravity = 0
+gravity_multiplier_falling = 1.0
+friction = 0.0
+acceleration = 1.0
+jump_input_delay = 0.1
+action_input_delay = 0.1

@@ -1,77 +1,80 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://bgalkt13urmsc"]
 
-[ext_resource path="res://src/menu/home/home.gd" type="Script" id=1]
-[ext_resource path="res://src/menu/level_chooser/level_chooser.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/menu/menu.png" type="Texture" id=3]
-[ext_resource path="res://src/font/morobox8.tres" type="BitmapFont" id=4]
-[ext_resource path="res://src/menu/level_card/level_card.gd" type="Script" id=5]
+[ext_resource type="Script" path="res://src/menu/home/home.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://2kf0g6k22vkf" path="res://src/menu/level_chooser/level_chooser.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://cbfmirbedoih2" path="res://src/menu/menu.png" id="3"]
+[ext_resource type="Script" path="res://src/menu/level_card/level_card.gd" id="5"]
+[ext_resource type="FontFile" uid="uid://bnrcdtod866ct" path="res://src/font/morobox8.png" id="5_jfjo5"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 root_node = NodePath("Control")
 
 [node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.694118, 0.592157, 0.494118, 1 )
+color = Color(0.694118, 0.592157, 0.494118, 1)
 
-[node name="LevelChooser" parent="Control" instance=ExtResource( 2 )]
+[node name="LevelChooser" parent="Control" instance=ExtResource("2")]
 
 [node name="TestLevelCard" type="NinePatchRect" parent="Control"]
-margin_left = 168.0
-margin_top = 192.0
-margin_right = 216.0
-margin_bottom = 216.0
-rect_min_size = Vector2( 48, 24 )
+custom_minimum_size = Vector2(48, 24)
+layout_mode = 0
+offset_left = 168.0
+offset_top = 192.0
+offset_right = 216.0
+offset_bottom = 216.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-texture = ExtResource( 3 )
-region_rect = Rect2( 0, 0, 16, 16 )
+texture = ExtResource("3")
+region_rect = Rect2(0, 0, 16, 16)
 patch_margin_left = 3
 patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
-script = ExtResource( 5 )
+script = ExtResource("5")
 index = -1
 
 [node name="Button" type="Button" parent="Control/TestLevelCard"]
 unique_name_in_owner = true
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
-custom_fonts/font = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="Control/TestLevelCard"]
 unique_name_in_owner = true
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = ExtResource( 4 )
+theme_override_fonts/font = ExtResource("5_jfjo5")
 text = "TEST"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control/TestLevelCard"]
 unique_name_in_owner = true
 
 [node name="ResetSave" type="NinePatchRect" parent="Control"]
-margin_left = 112.0
-margin_top = 192.0
-margin_right = 160.0
-margin_bottom = 216.0
-rect_min_size = Vector2( 48, 24 )
+custom_minimum_size = Vector2(48, 24)
+layout_mode = 0
+offset_left = 112.0
+offset_top = 192.0
+offset_right = 160.0
+offset_bottom = 216.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-texture = ExtResource( 3 )
-region_rect = Rect2( 0, 0, 16, 16 )
+texture = ExtResource("3")
+region_rect = Rect2(0, 0, 16, 16)
 patch_margin_left = 3
 patch_margin_top = 3
 patch_margin_right = 3
@@ -79,22 +82,18 @@ patch_margin_bottom = 3
 
 [node name="ResetSaveButton" type="Button" parent="Control/ResetSave"]
 unique_name_in_owner = true
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
-custom_fonts/font = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="Control/ResetSave"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = ExtResource( 4 )
+theme_override_fonts/font = ExtResource("5_jfjo5")
 text = "RSAVE"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control/ResetSave"]

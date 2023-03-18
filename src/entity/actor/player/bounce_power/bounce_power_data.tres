@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://bmcvcg63p6dhw"]
+
+[ext_resource type="Texture2D" uid="uid://d3yn6df7l80t" path="res://src/entity/actor/player/bounce_power/bounce_energy_bar_atlas.tres" id="1_0owoa"]
+[ext_resource type="Texture2D" path="res://src/entity/actor/player/normal_power/normal_player_atlas.tres" id="2_ndolc"]
+[ext_resource type="Script" path="res://src/autoload/bounce_power_sheet.gd" id="3_3pt8i"]
+
+[resource]
+script = ExtResource("3_3pt8i")
+player_texture = ExtResource("2_ndolc")
+energy_bar_texture = ExtResource("1_0owoa")

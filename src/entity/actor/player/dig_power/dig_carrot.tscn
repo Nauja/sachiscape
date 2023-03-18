@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvggw7j1pnft2"]
+
+[ext_resource type="PackedScene" uid="uid://dvq7cie7efy3e" path="res://src/entity/carrot/carrot.tscn" id="1_m610l"]
+[ext_resource type="Resource" uid="uid://d3axx3hbvxpsf" path="res://src/entity/actor/player/dig_power/dig_carrot_data.tres" id="2_uvvju"]
+
+[node name="DigCarrot" type="Node2D"]
+
+[node name="Carrot" parent="." instance=ExtResource("1_m610l")]
+_carrot_sheet = ExtResource("2_uvvju")

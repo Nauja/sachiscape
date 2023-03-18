@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=4 format=3]
+
+[ext_resource type="Texture2D" uid="uid://cdopq0j6hqnwl" path="res://src/entity/actor/player/sticky_power/sticky_energy_bar_atlas.tres" id="1_xwb5g"]
+[ext_resource type="Texture2D" uid="uid://0juamtgb5dk5" path="res://src/entity/actor/player/sticky_power/sticky_player_atlas.tres" id="2_0mxh0"]
+[ext_resource type="Script" path="res://src/autoload/sticky_power_sheet.gd" id="2_hmwr5"]
+
+[resource]
+script = ExtResource("2_hmwr5")
+player_texture = ExtResource("2_0mxh0")
+energy_bar_texture = ExtResource("1_xwb5g")

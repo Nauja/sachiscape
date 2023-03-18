@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=5 format=3]
+
+[ext_resource type="Texture2D" uid="uid://fkvcti5hbxkc" path="res://src/entity/actor/player/invisible_power/invisible_energy_bar_atlas.tres" id="1_fp6lq"]
+[ext_resource type="Texture2D" uid="uid://clotgpxonsj1j" path="res://src/entity/actor/player/invisible_power/invisible_player_atlas.tres" id="2_1yhug"]
+[ext_resource type="Script" path="res://src/autoload/invisible_power_sheet.gd" id="2_lochn"]
+[ext_resource type="Texture2D" uid="uid://b7df53ad6av8t" path="res://src/entity/actor/player/normal_power/normal_player_atlas.tres" id="3_h4y0q"]
+
+[resource]
+script = ExtResource("2_lochn")
+invisible_player_texture = ExtResource("2_1yhug")
+player_texture = ExtResource("3_h4y0q")
+energy_bar_texture = ExtResource("1_fp6lq")

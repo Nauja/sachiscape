@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwak0o10fmt2j"]
+
+[ext_resource type="PackedScene" uid="uid://dvq7cie7efy3e" path="res://src/entity/carrot/carrot.tscn" id="1_diho7"]
+[ext_resource type="Resource" uid="uid://cbguyhlle84sv" path="res://src/entity/actor/player/grapple_power/grapple_carrot_data.tres" id="2_7ksi2"]
+
+[node name="GrappleCarrot" type="Node2D"]
+
+[node name="Carrot" parent="." instance=ExtResource("1_diho7")]
+_carrot_sheet = ExtResource("2_7ksi2")

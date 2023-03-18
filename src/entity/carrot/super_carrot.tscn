@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ps1mh6e0jwki"]
+
+[ext_resource type="PackedScene" uid="uid://dvq7cie7efy3e" path="res://src/entity/carrot/carrot.tscn" id="1_vrv6r"]
+[ext_resource type="Resource" uid="uid://cdppjh4fyvkim" path="res://src/entity/carrot/super_carrot_data.tres" id="2_de0l6"]
+
+[node name="SuperCarrot" type="Node2D"]
+
+[node name="Carrot" parent="." instance=ExtResource("1_vrv6r")]
+_carrot_sheet = ExtResource("2_de0l6")

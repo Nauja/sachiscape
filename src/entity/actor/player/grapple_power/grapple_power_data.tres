@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://ccgiapjscoeqq"]
+
+[ext_resource type="Texture2D" uid="uid://bp6i8a67ym40v" path="res://src/entity/actor/player/grapple_power/grapple_energy_bar_atlas.tres" id="1_hom6e"]
+[ext_resource type="Texture2D" path="res://src/entity/actor/player/normal_power/normal_player_atlas.tres" id="2_sh4fq"]
+[ext_resource type="Script" path="res://src/autoload/grapple_power_sheet.gd" id="3_qimei"]
+
+[resource]
+script = ExtResource("3_qimei")
+energy_cost = 25
+grapple_speed = 4
+grapple_max_length = 128
+player_texture = ExtResource("2_sh4fq")
+energy_bar_texture = ExtResource("1_hom6e")

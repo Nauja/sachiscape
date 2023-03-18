@@ -1,56 +1,155 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=15 format=3 uid="uid://djf0hv64lp6i3"]
 
-[ext_resource path="res://src/entity/actor/player/player.gd" type="Script" id=1]
-[ext_resource path="res://src/entity/actor/player/player.png" type="Texture" id=2]
+[ext_resource type="Script" path="res://src/entity/actor/player/player.gd" id="1"]
+[ext_resource type="Texture2D" path="res://src/entity/actor/player/normal_power/normal_player_atlas.tres" id="2_b5hgr"]
+[ext_resource type="Script" path="res://src/entity/actor/actor_move_action.gd" id="3_mjdxk"]
+[ext_resource type="Script" path="res://src/entity/actor/actor_dig_action.gd" id="4_kkhyi"]
+[ext_resource type="Script" path="res://src/entity/actor/actor_dig_in_action.gd" id="4_ptjsi"]
+[ext_resource type="Script" path="res://src/entity/actor/actor_dig_out_action.gd" id="6_babym"]
+[ext_resource type="Script" path="res://src/entity/actor/actor_grapple_in_action.gd" id="7_3y6q8"]
+[ext_resource type="PackedScene" uid="uid://cx2nbcen2nv30" path="res://src/entity/grapple/grapple.tscn" id="7_c7rdo"]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id="CircleShape2D_7h6le"]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3jx7a"]
 radius = 7.0
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id="6"]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 0 ]
+"values": [0]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "idle"
-loop = true
+[sub_resource type="Animation" id="Animation_6rqsk"]
+resource_name = "crouch"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ 0, 1 ]
+"values": [2]
 }
 
-[node name="Player" type="KinematicBody2D"]
-z_index = 1
-collision_mask = 6
-script = ExtResource( 1 )
+[sub_resource type="Animation" id="5"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PhysicsCollisionShape:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PhysicsCollisionShape:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5l52k"]
+_data = {
+"RESET": SubResource("6"),
+"crouch": SubResource("Animation_6rqsk"),
+"idle": SubResource("5")
+}
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 1
+collision_mask = 392
+platform_floor_layers = 4294967176
+platform_wall_layers = 8
+script = ExtResource("1")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_mask = 482
+
+[node name="InteractionCollisionShape" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_7h6le")
+
+[node name="PhysicsCollisionShape" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_3jx7a")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( 6 )
-anims/idle = SubResource( 5 )
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_5l52k")
+}
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -2, -1 )
-texture = ExtResource( 2 )
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-2, -1)
+texture = ExtResource("2_b5hgr")
 hframes = 4
-vframes = 4
+
+[node name="MoveAction" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_mjdxk")
+_entity_path = NodePath("..")
+
+[node name="DigInAction" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_ptjsi")
+_dig_action_node = NodePath("../DigAction")
+_entity_path = NodePath("..")
+
+[node name="DigAction" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_kkhyi")
+_entity_path = NodePath("..")
+
+[node name="DigOutAction" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("6_babym")
+_move_action_node = NodePath("../MoveAction")
+_entity_path = NodePath("..")
+
+[node name="GrappleInAction" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("7_3y6q8")
+_grapple_path = NodePath("../Grapple")
+_entity_path = NodePath("..")
+
+[node name="Grapple" parent="." instance=ExtResource("7_c7rdo")]
+z_index = -1
+length = 2

@@ -1,59 +1,203 @@
 class_name Player
 extends Actor
 
-export (int) var speed = 120
-export (int) var jump_speed = -180
-export (int) var gravity = 400
-export (float, 0, 1.0) var friction = 0.1
-export (float, 0, 1.0) var acceleration = 0.25
+# Player sheet accessors
+var player_sheet: PlayerSheet:
+	get:
+		return actor_sheet
 
-var energy: int setget _set_energy, _get_energy
-var max_energy: int setget , _get_max_energy
+var max_energy: int:
+	get = _get_max_energy
 
-onready var _animation_player = $AnimationPlayer
+# Power sheet accessors
+var _override_power: PowerSheet
+var power: PowerSheet:
+	get = _get_power,
+	set = _set_power
 
-var velocity = Vector2.ZERO
+# Current energy level
+var energy: int:
+	get = _get_energy,
+	set = _set_energy
 
-func _set_energy(val: int) -> void:
-	var old_energy = energy
-	energy = clamp(val, 0, _get_max_energy())
-	LevelSignals.notify_energy_changed(self, old_energy, energy)
+# Remaining duration of the super carrot effect
+var super_carrot_timer: float
+# If player is invisible
+var _was_invisible: bool
+var invisible: bool
+
+# If on a diggable surface
+var _can_dig: bool
+# Chewable entity near the player
+var _can_chew: Cable
+var can_chew: bool:
+	get:
+		return _current_action == move_action and _can_chew and not _can_chew.is_cut()
+
+@onready var sprite: Sprite2D = %Sprite2D:
+	get:
+		return sprite
+@onready var _interaction_area: Area2D = %InteractionArea
+@onready var move_action: ActorAction = %MoveAction:
+	get:
+		return move_action
+@onready var dig_in_action: ActorDigInAction = %DigInAction:
+	get:
+		return dig_in_action
+@onready var dig_action: ActorDigAction = %DigAction:
+	get:
+		return dig_action
+@onready var dig_out_action: ActorDigOutAction = %DigOutAction:
+	get:
+		return dig_out_action
+@onready var grapple_in_action: ActorGrappleInAction = %GrappleInAction:
+	get:
+		return grapple_in_action
+
+
+func can_collect_carrot() -> bool:
+	return true
+
+
+# If the player has the super carrot effect
+func has_super_carrot_energy() -> bool:
+	return super_carrot_timer > 0.0
+
+
+# If the player is invisible
+func has_invisibility() -> bool:
+	return invisible
+
+
+func add_super_carrot_duration(value: float) -> void:
+	super_carrot_timer = max(super_carrot_timer, value)
+	PlayerSignals.notify_energy_changed(self, energy, energy)
+
+
+func _get_power() -> PowerSheet:
+	return _override_power if _override_power else player_sheet.power
+
+
+func _set_power(value: PowerSheet) -> void:
+	if power == value:
+		return
+
+	print("set power ", value)
+	var old_power = power
+	_override_power = value
+	PlayerSignals.notify_power_changed(self, old_power, value)
+
+
+func _get_max_energy() -> int:
+	return player_sheet.max_energy
+
 
 func _get_energy() -> int:
-	return energy
-	
-func _get_max_energy() -> int:
-	return 3
+	return max_energy if has_super_carrot_energy() else energy
+
+
+func _set_energy(val: int) -> void:
+	if has_super_carrot_energy():
+		return
+
+	var old_energy = energy
+	energy = clamp(val, 0, max_energy)
+	PlayerSignals.notify_energy_changed(self, old_energy, energy)
+
 
 func _ready():
-	LevelSignals._get_energy = funcref(self, "_get_energy")
-	_animation_player.play("idle")
-	_set_energy(1)
+	actor_sheet = GameSignals.get_game_sheet().player_sheet
+	assert(actor_sheet)
+	assert(sprite)
+	assert(_interaction_area)
+	assert(move_action)
+	super()
+	PlayerSignals._get_max_energy = _get_max_energy
+	PlayerSignals._get_energy = _get_energy
+	PlayerSignals._get_power = _get_power
+	_interaction_area.connect("body_entered", _on_body_entered)
+	_interaction_area.connect("body_exited", _on_body_exited)
+	var level_sheet = LevelSignals.get_level_sheet()
+	_set_energy(level_sheet.energy)
+	power = level_sheet.power
+	push_action(move_action)
 
-func get_input():
-	var dir = 0
-	if input.x > 0:
-		dir += 1
-	if input.x < 0:
-		dir -= 1
-	if dir != 0:
-		velocity.x = lerp(velocity.x, dir * speed, acceleration)
-	else:
-		velocity.x = lerp(velocity.x, 0, friction)
 
 func _physics_process(delta):
-	get_input()
-	velocity.y += gravity * delta
-	velocity = move_and_slide(velocity, Vector2.UP)
-	if want_jump:
-		if is_on_floor():
-			want_jump = false
-			velocity.y = jump_speed
+	if super_carrot_timer > 0.0:
+		var old_energy = energy
+		super_carrot_timer -= delta
+		PlayerSignals.notify_energy_changed(self, old_energy, energy)
 
-func collect_carrot(other) -> bool:
-	var old_energy = _get_energy()
-	if old_energy >= _get_max_energy():
-		return false
-	
-	_set_energy(old_energy + 1)
-	return true
+	if want_action:
+		if can_chew:
+			chew()
+		elif power:
+			power.activate(self)
+
+	if power:
+		power.physics_update(self, delta)
+
+
+func _process(delta):
+	super(delta)
+
+	if power:
+		power.update(self, delta)
+
+
+func dig_in() -> bool:
+	var enter_tile = LevelSignals.find_diggable_tile(global_position)
+	if enter_tile:
+		want_action = false
+		dig_in_action.target = enter_tile
+		push_action(dig_in_action)
+		return true
+
+	return false
+
+
+func dig_out() -> bool:
+	var exit_tile = LevelSignals.find_exit_dirt_tile(digger.global_position)
+	if exit_tile:
+		want_action = false
+		dig_out_action.target = exit_tile
+		push_action(dig_out_action)
+		return true
+
+	return false
+
+
+func chew() -> void:
+	want_action = false
+	_can_chew.cut()
+
+
+func grapple(speed: int, max_length: int) -> void:
+	want_action = false
+	grapple_in_action.grapple_speed = speed
+	grapple_in_action.grapple_max_length = max_length
+	push_action(grapple_in_action)
+
+
+func _on_body_entered(body) -> void:
+	print("entered ", body)
+	if body.is_in_group("spike"):
+		LevelSignals.notify_reset_pressed(self)
+	elif body is VentTileMap:
+		body.on_body_entered(self)
+	elif body is DirtTileMap:
+		_can_dig = true
+	elif body is Cable:
+		_can_chew = body
+
+
+func _on_body_exited(body) -> void:
+	print("exited ", body)
+	if body is VentTileMap:
+		body.on_body_exited(self)
+	elif body is DirtTileMap:
+		_can_dig = false
+	elif body is Cable:
+		if _can_chew == body:
+			_can_chew = null

@@ -1,14 +1,24 @@
 class_name Entity
-extends KinematicBody2D
+extends CharacterBody2D
 
-var _name:String = 'entity'
+# Action currently playing
+var _current_action: EntityAction
+var current_action: EntityAction:
+	get:
+		return _current_action
 
-var _attibutes = {
-	health = -1,
-}
 
-func _ready():
-	print("Entity Init : ")
+func _process(delta):
+	if _current_action and _current_action.is_done():
+		_current_action = null
 
-func get_name() -> String:
-	return _name
+
+# Push a new action to the entity
+func push_action(action: EntityAction):
+	print(action)
+	if _current_action:
+		_current_action.cancel()
+
+	_current_action = action
+	if action:
+		action.start()

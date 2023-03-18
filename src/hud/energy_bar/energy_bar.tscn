@@ -1,39 +1,23 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://cql8rev7ge4ts"]
 
-[ext_resource path="res://src/hud/energy_bar/energy_bar.gd" type="Script" id=1]
-[ext_resource path="res://src/hud/hud.png" type="Texture" id=2]
+[ext_resource type="Script" path="res://src/hud/energy_bar/energy_bar.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://b5wpjg0n0pflo" path="res://src/entity/actor/player/normal_power/normal_energy_bar_atlas.tres" id="1_iahyi"]
+[ext_resource type="Texture2D" uid="uid://cx6vcm8gk6ulw" path="res://src/hud/energy_bar/energy_progress_bar_atlas.tres" id="3_fxrqv"]
+[ext_resource type="Texture2D" uid="uid://n68iixpjdeyk" path="res://src/hud/energy_bar/energy_super_progress_bar_atlas.tres" id="4_4ojft"]
 
-[node name="EnergyBar" type="Sprite"]
-texture = ExtResource( 2 )
+[node name="EnergyBar" type="Sprite2D"]
+texture = ExtResource("1_iahyi")
 region_enabled = true
-region_rect = Rect2( 0, 16, 48, 16 )
-script = ExtResource( 1 )
-_fills_paths = [ NodePath("Fill1"), NodePath("Segment2/Fill2"), NodePath("Segment2/Segment3/Fill3") ]
+region_rect = Rect2(0, 0, 48, 16)
+script = ExtResource("1")
+normal_texture = ExtResource("3_fxrqv")
+super_texture = ExtResource("4_4ojft")
 
-[node name="Segment2" type="Sprite" parent="."]
-position = Vector2( 32, 0 )
-texture = ExtResource( 2 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 48, 16 )
-
-[node name="Segment3" type="Sprite" parent="Segment2"]
-position = Vector2( 24, 0 )
-texture = ExtResource( 2 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 48, 16 )
-
-[node name="Fill3" type="Sprite" parent="Segment2/Segment3"]
-texture = ExtResource( 2 )
-region_enabled = true
-region_rect = Rect2( 0, 32, 32, 16 )
-
-[node name="Fill2" type="Sprite" parent="Segment2"]
-texture = ExtResource( 2 )
-region_enabled = true
-region_rect = Rect2( 0, 32, 32, 16 )
-
-[node name="Fill1" type="Sprite" parent="."]
-position = Vector2( 8, 0 )
-texture = ExtResource( 2 )
-region_enabled = true
-region_rect = Rect2( 0, 32, 32, 16 )
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -3.0
+offset_top = -8.0
+offset_right = 21.0
+offset_bottom = 8.0
+value = 100.0
+texture_progress = ExtResource("4_4ojft")

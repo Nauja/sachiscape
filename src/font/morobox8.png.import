@@ -1,35 +1,21 @@
 [remap]
 
-importer="texture"
-type="StreamTexture"
-path="res://.import/morobox8.png-1b7b28bacbcb3af87afa0519768ebe43.stex"
-metadata={
-"vram_texture": false
-}
+importer="font_data_image"
+type="FontFile"
+uid="uid://bnrcdtod866ct"
+path="res://.godot/imported/morobox8.png-1b7b28bacbcb3af87afa0519768ebe43.fontdata"
 
 [deps]
 
 source_file="res://src/font/morobox8.png"
-dest_files=[ "res://.import/morobox8.png-1b7b28bacbcb3af87afa0519768ebe43.stex" ]
+dest_files=["res://.godot/imported/morobox8.png-1b7b28bacbcb3af87afa0519768ebe43.fontdata"]
 
 [params]
 
-compress/mode=0
-compress/lossy_quality=0.7
-compress/hdr_mode=0
-compress/bptc_ldr=0
-compress/normal_map=0
-flags/repeat=0
-flags/filter=false
-flags/mipmaps=false
-flags/anisotropic=false
-flags/srgb=2
-process/fix_alpha_border=true
-process/premult_alpha=false
-process/HDR_as_SRGB=false
-process/invert_color=false
-process/normal_map_invert_y=false
-stream=false
-size_limit=0
-detect_3d=false
-svg/scale=1.0
+character_ranges=PackedStringArray("0-127")
+columns=16
+rows=16
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(0, 0, 0, 0)
+fallbacks=[]
+compress=true

@@ -1,21 +1,39 @@
 class_name EnergyBar
-extends Sprite
+extends Sprite2D
 
-export(Array, NodePath) var _fills_paths
-var _fills: Array
+# The progress bar
+@onready var _progress_bar: TextureProgressBar = %ProgressBar
+# Textures for the two cases
+@export var normal_texture: Texture2D
+@export var super_texture: Texture2D
+# If player has the super carrot energy
+var _has_super_carrot_energy: bool
+var _max_energy: int
 
-func _set_energy(val: int) -> void:
-	for i in range(len(self._fills)):
-		_fills[i].visible = i + 1 <= val
+
+func _set_energy(value: int, max_value: int) -> void:
+	_max_energy = max_value
+	_progress_bar.value = value
+	_progress_bar.max_value = max_value
+	_progress_bar.texture_progress = super_texture if _has_super_carrot_energy else normal_texture
+
+
+func _set_power(value: PowerSheet) -> void:
+	if value:
+		texture = value.energy_bar_texture
+
 
 func _ready():
-	_fills = []
-	for i in range(len(_fills_paths)):
-		_fills.append(get_node(_fills_paths[i]))
-		_fills[i].visible = false
-		
-	LevelSignals.connect("energy_changed", self, "_on_energy_changed")
-	_set_energy(LevelSignals.get_energy())
-	
-func _on_energy_changed(player: Player, old_value: int, new_value: int) -> void:
-	_set_energy(new_value)
+	PlayerSignals.connect("energy_changed", _on_energy_changed)
+	PlayerSignals.connect("power_changed", _on_power_changed)
+	_set_power(PlayerSignals.get_power())
+	_set_energy(PlayerSignals.get_energy(), PlayerSignals.get_max_energy())
+
+
+func _on_energy_changed(player, old_value: int, new_value: int) -> void:
+	_has_super_carrot_energy = player.has_super_carrot_energy()
+	_set_energy(new_value, _max_energy)
+
+
+func _on_power_changed(player, old_value: PowerSheet, new_value: PowerSheet) -> void:
+	_set_power(new_value)
