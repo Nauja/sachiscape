@@ -1,4 +1,5 @@
 # Generic actor configuration
+class_name ActorSheet
 extends Resource
 
 # The scene to spawn

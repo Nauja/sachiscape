@@ -14,7 +14,7 @@ signal test_level_selected
 signal reset_save
 
 
-func get_game_sheet() -> GameSheet:
+func get_game_sheet():
 	return _get_game_sheet.call() if _get_game_sheet else null
 
 

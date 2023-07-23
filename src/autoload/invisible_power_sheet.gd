@@ -1,3 +1,4 @@
+class_name InvisiblePowerSheet
 extends PowerSheet
 
 # Texture for the player when invisible

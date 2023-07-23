@@ -1,3 +1,4 @@
+class_name GameSheet
 extends Resource
 
 # RefCounted to scene containing the home menu

@@ -1,3 +1,4 @@
+class_name CarrotSheet
 extends Resource
 
 # Carrot texture
