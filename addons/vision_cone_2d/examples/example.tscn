@@ -70,10 +70,9 @@ rotation_speed = 1.0
 move_on_path = NodePath("../PatrolPath/PathFollow2D")
 movement_speed = 3.0
 
-[node name="VisionCone2D" parent="Enemy3" index="1" node_paths=PackedStringArray("write_polygon2d")]
+[node name="VisionCone2D" parent="Enemy3" index="1"]
 angle_deg = 45
 ray_count = 10
-write_polygon2d = NodePath("")
 debug_lines = true
 debug_shape = true
 minimum_recalculate_time_msec = 250
