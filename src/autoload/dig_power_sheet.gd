@@ -1,3 +1,4 @@
+class_name DigPowerSheet
 extends PowerSheet
 
 # Energy cost for entering dirt

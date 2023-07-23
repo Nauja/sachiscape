@@ -1,4 +1,5 @@
 # Configuration of a power usable by the player
+class_name PowerSheet
 extends Resource
 
 # Texture for the player
@@ -8,24 +9,24 @@ extends Resource
 
 
 # Power added to the actor
-func on_equipped(actor: Actor) -> void:
+func on_equipped(actor) -> void:
 	actor.sprite.texture = player_texture
 
 
 # Power removed from the actor
-func on_unequipped(actor: Actor) -> void:
+func on_unequipped(actor) -> void:
 	pass
 
 
 # Activate the power on an actor
-func activate(actor: Actor) -> bool:
+func activate(actor) -> bool:
 	return false
 
 
 # Update the power on an actor
-func update(actor: Actor, delta: float) -> void:
+func update(actor, delta: float) -> void:
 	pass
 
 
-func physics_update(actor: Actor, delta: float) -> void:
+func physics_update(actor, delta: float) -> void:
 	pass

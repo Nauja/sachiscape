@@ -1,4 +1,5 @@
 # Player specific configuration
+class_name PlayerSheet
 extends ActorSheet
 
 # Maximum energy

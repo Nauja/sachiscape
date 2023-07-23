@@ -1,3 +1,4 @@
+class_name LevelSheet
 extends Resource
 
 # Scene to load

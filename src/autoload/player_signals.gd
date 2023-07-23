@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 # Return the player max energy
 var _get_max_energy: Callable
@@ -24,7 +24,7 @@ func get_energy() -> int:
 	return _get_energy.call() if _get_energy else 0
 
 
-func get_power() -> PowerSheet:
+func get_power():
 	return _get_power.call() if _get_power else null
 
 
@@ -32,5 +32,5 @@ func notify_energy_changed(player, old_value: int, new_value: int):
 	emit_signal("energy_changed", player, old_value, new_value)
 
 
-func notify_power_changed(player, old_value: PowerSheet, new_value: PowerSheet):
+func notify_power_changed(player, old_value, new_value):
 	emit_signal("power_changed", player, old_value, new_value)

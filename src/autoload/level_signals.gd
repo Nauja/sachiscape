@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 # Return the sheet of current level
 var _get_level_sheet: Callable
@@ -34,7 +34,7 @@ signal action_available(player, target)
 signal action_unavailable(player, target)
 
 
-func get_level_sheet() -> LevelSheet:
+func get_level_sheet():
 	return _get_level_sheet.call() if _get_level_sheet else null
 
 
@@ -70,9 +70,9 @@ func notify_load_next_level():
 	emit_signal("load_next_level")
 
 
-func notify_action_available(player, target: Entity):
+func notify_action_available(player, target):
 	emit_signal("action_available", player, target)
 
 
-func notify_action_unavailable(player, target: Entity):
+func notify_action_unavailable(player, target):
 	emit_signal("action_unavailable", player, target)
