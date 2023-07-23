@@ -7,7 +7,7 @@ on:
       - "LICENSE"
 
 env:
-  GODOT_VERSION: 4.0
+  GODOT_VERSION: 4.1
   EXPORT_NAME: sachiscape
 
 jobs:
@@ -15,7 +15,7 @@ jobs:
     name: Windows Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:4.0
+      image: barichello/godot-ci:4.1
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -29,7 +29,7 @@ jobs:
       - name: Build
         run: |
           mkdir -v -p build/windows
-          godot -v --export "Windows Desktop" ./build/windows/${EXPORT_NAME}.exe
+          godot -v --headless --export-release "Windows Desktop" ./build/windows/${EXPORT_NAME}.exe
       - name: Upload Artifact
         if: github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v1
@@ -41,7 +41,7 @@ jobs:
     name: Web Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:4.0
+      image: barichello/godot-ci:4.1
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -55,7 +55,7 @@ jobs:
       - name: Build
         run: |
           mkdir -v -p build/web
-          godot -v --export "HTML5" ./build/web/index.html
+          godot -v --headless --export-release "HTML5" ./build/web/index.html
       - name: Upload Artifact
         if: github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v1
